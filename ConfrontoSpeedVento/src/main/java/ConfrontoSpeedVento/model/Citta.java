@@ -6,7 +6,7 @@ public class Citta {
 	private String nome;
 	private long idOpenW;
 	private vector<datoVento> datiVento;
-	
+
 	public Citta(String nome,long idOpenW)
 	{
 		this.nome=nome;
@@ -29,14 +29,14 @@ public class Citta {
 	public void setIdOpenW(long idOpenW) {
 		this.idOpenW = idOpenW;
 	}
-	
+
 	public Vector<datoVento> getDatiVento()
 	{
 		return this.datiVento;
 	}
-	
+
 	public void setDatiVento(Vector<datoVento> datiVento) {
-		this.datiVento = datiVento;
+		this.datiVento = datiVento; 
 	}
-	
+
 }
