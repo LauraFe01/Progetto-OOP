@@ -5,7 +5,7 @@ import java.util.*;
 public class Citta {
 	private String nome;
 	private long idOpenW;
-	private vector<datoVento> datiVento;
+	private Vector<datoVento> datiVento;
 
 	public Citta(String nome,long idOpenW)
 	{
