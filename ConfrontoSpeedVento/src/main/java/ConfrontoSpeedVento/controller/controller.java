@@ -12,7 +12,7 @@ public class controller {
 	@RequestMapping(value= "/getAncona")
 	public ResponseEntity<Object>  getSpeed()
 	{
-		return ResponseEntity<>(serviziMeteo.toJSON(serviziMeteo));
+		return ResponseEntity<>(serviziMeteo.toJSON(serviziM));
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
@@ -21,6 +21,7 @@ public class controller {
 		try {
 		    serviziMeteo.esportaSuFile();
 		}catch(IOException e) {
+			
 			return false;
 		}
 		return true;
