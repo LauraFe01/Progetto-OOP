@@ -1,4 +1,4 @@
-package ConfrontoSpeedVento.model;
+package com.ConfrontoSpeedVento.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,9 +7,9 @@ import java.util.TimeZone;
 public class datoVento {
 
 	private double speedVento;
-	long time;
+	int time;
 
-	public datoVento(double speedVento, long dataOra)
+	public datoVento(double speedVento, int dataOra)
 	{
 		this.setSpeedVento(speedVento);
 		this.time = dataOra;
@@ -36,7 +36,7 @@ public class datoVento {
 		return ("\n"+java_date+"\n");
 	}
 
-	public void setTime (long time) {
+	public void setTime (int time) {
 		this.time = time;
 	}
 
