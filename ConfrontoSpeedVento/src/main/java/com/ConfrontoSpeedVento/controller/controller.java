@@ -21,11 +21,11 @@ public class controller {
 	//@Autowired
 	//private ImplServiziMeteo serviziMeteo;
 	
-	@GetMapping(value= "/speedWind")
-	public ResponseEntity <Object> getWindSpeed (@RequestParam("nome") String nomeCitta)
+	@GetMapping(value= "/weatherInfo")
+	public ResponseEntity <Object> getWeatherInfo (@RequestParam("nome") String nomeCitta)
 	{
-		ImplServiziMeteo serviziMeteo = new ImplServiziMeteo();
-		return new ResponseEntity<>(serviziMeteo.getWindSpeed(nomeCitta).toString(), HttpStatus.OK);
+		ServiziMeteo serviziMeteo = new ImplServiziMeteo();
+		return new ResponseEntity<>(serviziMeteo.getWeatherInfo(nomeCitta).toString(), HttpStatus.OK);
 	}
 
 	
@@ -33,7 +33,7 @@ public class controller {
 	@GetMapping(value = "/save")
 	public String save(@RequestParam("nome") String nomeCitta)
 	{
-			ImplServiziMeteo serviziMeteo = new ImplServiziMeteo();
+			ServiziMeteo serviziMeteo = new ImplServiziMeteo();
 		    serviziMeteo.esportaSuFile(nomeCitta);
   
 		   return "Il file è stato creato!";
@@ -44,7 +44,7 @@ public class controller {
 	@GetMapping(value="/weather")
     public ResponseEntity<Object> getCityWeather(@RequestParam("nome") String nomeCitta) 
 	{	
-	    ImplServiziMeteo serviziMeteo = new ImplServiziMeteo();
+	    ServiziMeteo serviziMeteo = new ImplServiziMeteo();
 		Citta city = serviziMeteo.getSpeedW(nomeCitta);
 		
 		JSONObject obj = new JSONObject();
@@ -59,7 +59,7 @@ public class controller {
 	@GetMapping(value="/hourlySaving")
 	public String hourlySaving(@RequestParam("nome") String nomeCitta)
 	{
-		ImplServiziMeteo serviziMeteo = new ImplServiziMeteo();
+		ServiziMeteo serviziMeteo = new ImplServiziMeteo();
 		serviziMeteo.salvataggioOrario(nomeCitta);
 		return("Salvataggio iniziato!");
 	}

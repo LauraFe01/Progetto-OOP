@@ -45,7 +45,6 @@ public class ImplServiziMeteo implements ServiziMeteo{
 
 	}
 
-	//Fatto, funziona ma ricontrolla, secondo me non serve
 	public void esportaSuFile(String nomeCitta)
 	{
 		Citta city = getSpeedW(nomeCitta);
@@ -98,7 +97,7 @@ public class ImplServiziMeteo implements ServiziMeteo{
 
 	}
 	 */
-	public JSONObject getWindSpeed(String nomeCitta)
+	public JSONObject getWeatherInfo(String nomeCitta)
 	{
 		JSONObject speed;
 		//String data = "";
@@ -146,16 +145,10 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	}
 
 
-
-	/**
-	 * Questo metodo utilizza getCityWeather per andare a selezionare le previsioni meteo ristrette (temperatura
-	 * massima, minima, percepita e visibilità).
-	 */
-
 	public Citta getSpeedW(String nomeCitta)
 	{
 
-		JSONObject object = getWindSpeed(nomeCitta);
+		JSONObject object = getWeatherInfo(nomeCitta);
 		JSONObject weather = object.getJSONObject("wind");
 		int time = 0;
 
@@ -183,7 +176,7 @@ public class ImplServiziMeteo implements ServiziMeteo{
 
 	public Citta getCityInfo(String nomeCitta)
 	{
-		JSONObject object = getWindSpeed(nomeCitta);
+		JSONObject object = getWeatherInfo(nomeCitta);
 		Citta city = new Citta(nomeCitta);
 		int id=0;
 		String cityObj=null;
@@ -218,7 +211,6 @@ public class ImplServiziMeteo implements ServiziMeteo{
 
 	public void salvataggioOrario(String nomeCitta)
 	{
-		//boolean exists = file.exists();
 
 		String route = System.getProperty("user.dir") + "/" + nomeCitta + "SalvataggioOrario.json";
 		File file = new File(route);
@@ -227,14 +219,13 @@ public class ImplServiziMeteo implements ServiziMeteo{
 
 			@Override
 			public void run() {
-				//JSONObject speedWind = getWindSpeed(nomeCitta);
-				
+
 				Citta city = getSpeedW(nomeCitta);
-				
+
 				JSONObject obj;
-				
+
 				obj = toJSON(city);
-				
+
 
 				try{
 					if(!file.exists()) {
@@ -254,9 +245,9 @@ public class ImplServiziMeteo implements ServiziMeteo{
 				}
 			}
 		};
-		
+
 		Timer timer = new Timer();
-		timer.schedule(timerTask, 0, 60000);
+		timer.schedule(timerTask, 0, 3600000);
 	}
 
 }
