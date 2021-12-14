@@ -29,26 +29,23 @@ public class controller {
 	}
 
 	
-	/*
-	@RequestMapping(value = "/save", method = RequestMethod.GET)
-	public boolean save()
+
+	@GetMapping(value = "/save")
+	public String save(@RequestParam("nome") String nomeCitta)
 	{
-		try {
-		    serviziMeteo.esportaSuFile();
-		}catch(IOException e) {
-			
-			return false;
-		}
-		return true;
+			ImplServiziMeteo serviziMeteo = new ImplServiziMeteo();
+		    serviziMeteo.esportaSuFile(nomeCitta);
+  
+		   return "Il file è stato creato!";
 	}
 	
-	*/
+
 	
 	@GetMapping(value="/weather")
-    public ResponseEntity<Object> getCityWeather(@RequestParam("nome") String cityName) {
-		
+    public ResponseEntity<Object> getCityWeather(@RequestParam("nome") String nomeCitta) 
+	{	
 	    ImplServiziMeteo serviziMeteo = new ImplServiziMeteo();
-		Citta city = serviziMeteo.getSpeedW(cityName);
+		Citta city = serviziMeteo.getSpeedW(nomeCitta);
 		
 		JSONObject obj = new JSONObject();
 	    ImplServiziMeteo toJson = new ImplServiziMeteo();
@@ -58,6 +55,14 @@ public class controller {
 		return new ResponseEntity<> (obj.toString(), HttpStatus.OK);
 	
     }
+	
+	@GetMapping(value="/hourlySaving")
+	public String hourlySaving(@RequestParam("nome") String nomeCitta)
+	{
+		ImplServiziMeteo serviziMeteo = new ImplServiziMeteo();
+		serviziMeteo.salvataggioOrario(nomeCitta);
+		return("Salvataggio iniziato!");
+	}
 	
 	
 }

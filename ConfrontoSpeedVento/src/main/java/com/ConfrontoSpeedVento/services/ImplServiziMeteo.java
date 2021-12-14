@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Vector;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -42,7 +44,8 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	{
 
 	}
-/*
+
+	//Fatto, funziona ma ricontrolla, secondo me non serve
 	public void esportaSuFile(String nomeCitta)
 	{
 		Citta city = getSpeedW(nomeCitta);
@@ -94,56 +97,56 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		}
 
 	}
-*/
+	 */
 	public JSONObject getWindSpeed(String nomeCitta)
 	{
 		JSONObject speed;
 		//String data = "";
 		//try {
-			String url = APIurl + nomeCitta + "&appid=" +  APIkey;
-			
-			RestTemplate rt = new RestTemplate();
-			
-			speed = new JSONObject(rt.getForObject(url, String.class));
-			/*
+		String url = APIurl + nomeCitta + "&appid=" +  APIkey;
+
+		RestTemplate rt = new RestTemplate();
+
+		speed = new JSONObject(rt.getForObject(url, String.class));
+		/*
 			URLConnection connection = url.openConnection();
 			connection.connect();
 			InputStream in = connection.getInputStream();
 
 			String data = "";
 			String line = "";
-            
-			
+
+
 			InputStreamReader inR = new InputStreamReader( in );
 			BufferedReader buf = new BufferedReader( inR );
 
 			//try {
 				while ((line = buf.readLine()) != null) {
 					data+= line;
-				
+
 				}
 			//} finally {
 				buf.close();
      		//}
-			
+
 
 			speed = (JSONObject) JSONValue.parseWithException(data);
 			return speed;
-            
+
 		}catch(IOException | ParseException e) {
 			e.printStackTrace();
 		}
 		catch (Exception e) {
 	    	e.printStackTrace();
 		}
-*/
-	    return speed;
-			
-			
-			}
+		 */
+		return speed;
 
 
-	
+	}
+
+
+
 	/**
 	 * Questo metodo utilizza getCityWeather per andare a selezionare le previsioni meteo ristrette (temperatura
 	 * massima, minima, percepita e visibilità).
@@ -155,24 +158,24 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		JSONObject object = getWindSpeed(nomeCitta);
 		JSONObject weather = object.getJSONObject("wind");
 		int time = 0;
-		
+
 		datoVento data = new datoVento();
 
 		Citta city = new Citta(nomeCitta);
 		city = getCityInfo(nomeCitta);
 
-	
+
 		for(int i=0; i<object.length(); i++)
 		{
 			time = (int) object.get("dt");
 		}
-		
+
 		data.setTime(time);
 		data.setSpeedVento(weather.getDouble("speed"));
-		
+
 		Vector<datoVento> vector = new Vector<datoVento>(weather.length());
 		vector.add(data);
-		
+
 		city.setDatiVento(vector);
 
 		return city;
@@ -184,14 +187,14 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		Citta city = new Citta(nomeCitta);
 		int id=0;
 		String cityObj=null;
-		
+
 		for(int i=0; i<object.length(); i++)
 		{
-		    cityObj = (String) object.get("name");
+			cityObj = (String) object.get("name");
 
 			id = (int) object.get("id");
 		}
-	
+
 		city.setNome(cityObj);
 		city.setIdOpenW(id);
 
@@ -203,7 +206,7 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		JSONObject object = new JSONObject();
 		object.put("name", city.getNome());
 		object.put("Id", city.getIdOpenW());
-		
+
 		for(int i = 0;i <city.getDatiVento().size();i++)
 		{
 			object.put("data",(city.getDatiVento()).get(i).getTime());
@@ -213,34 +216,47 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		return object;
 	}
 
-	@Scheduled(fixedRate=3600000)
-	public String salvataggioOrario(String nomeCitta)
+	public void salvataggioOrario(String nomeCitta)
 	{
-		String route = System.getProperty("user.dir") + "/" + nomeCitta + "HourlyArchive.txt";
 		//boolean exists = file.exists();
-		//if(!exists)
-		//{
+
+		String route = System.getProperty("user.dir") + "/" + nomeCitta + "SalvataggioOrario.json";
 		File file = new File(route);
-		//}
-		JSONObject speedWind = getWindSpeed(nomeCitta);
 
-		try{
-			if(!file.exists()) {
-				file.createNewFile();
+		TimerTask timerTask = new TimerTask(){
+
+			@Override
+			public void run() {
+				//JSONObject speedWind = getWindSpeed(nomeCitta);
+				
+				Citta city = getSpeedW(nomeCitta);
+				
+				JSONObject obj;
+				
+				obj = toJSON(city);
+				
+
+				try{
+					if(!file.exists()) {
+						file.createNewFile();
+					}
+
+					FileWriter fileWriter = new FileWriter(file, true);
+
+					BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+					bufferedWriter.write(obj.toString());
+					bufferedWriter.write("\n");
+
+					bufferedWriter.close();
+
+				} catch(IOException e) {
+					System.out.println(e);
+				}
 			}
-
-			FileWriter fileWriter = new FileWriter(file, true);
-
-			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-			//bufferedWriter.write(speedWind.toString());
-			bufferedWriter.write("\n");
-
-			bufferedWriter.close();
-
-		} catch(IOException e) {
-			System.out.println(e);
-		}
-		return "Il file è stato salvato";
+		};
+		
+		Timer timer = new Timer();
+		timer.schedule(timerTask, 0, 60000);
 	}
 
 }
