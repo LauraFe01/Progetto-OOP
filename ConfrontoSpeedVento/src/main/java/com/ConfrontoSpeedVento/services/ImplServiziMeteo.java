@@ -42,7 +42,6 @@ public class ImplServiziMeteo implements ServiziMeteo{
 
 	public ImplServiziMeteo()
 	{
-
 	}
 
 	public void esportaSuFile(String nomeCitta)
@@ -51,6 +50,7 @@ public class ImplServiziMeteo implements ServiziMeteo{
 
 		//SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		//String today = date.format(new Date());
+		
 		LocalDate todaysDate = LocalDate.now();
 
 		String nomeFile = nomeCitta+"_"+todaysDate;
@@ -247,7 +247,7 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		};
 
 		Timer timer = new Timer();
-		timer.schedule(timerTask, 0, 3600000);
+		timer.schedule(timerTask, 0, 3600000); 
 	}
 
 }
