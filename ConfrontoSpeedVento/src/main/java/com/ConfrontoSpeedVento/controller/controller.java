@@ -64,6 +64,15 @@ public class controller {
 		return("Salvataggio iniziato!");
 	}
 	
+
+	@GetMapping(value = "/filtro")
+	public String filtro(@RequestParam("nome") String nomeCitta,@RequestParam ("oraInizio") String oraInizio, @RequestParam("oraFine") String oraFine)
+	{
+			ServiziMeteo serviziMeteo = new ImplServiziMeteo();
+		    serviziMeteo.importaDaFile(nomeCitta, oraInizio, oraFine);
+           
+		   return serviziMeteo.importaDaFile(nomeCitta, oraInizio, oraFine).toString();
+	}
 	
 }
 

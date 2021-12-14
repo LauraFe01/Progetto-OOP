@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -50,7 +51,7 @@ public class ImplServiziMeteo implements ServiziMeteo{
 
 		//SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		//String today = date.format(new Date());
-		
+
 		LocalDate todaysDate = LocalDate.now();
 
 		String nomeFile = nomeCitta+"_"+todaysDate;
@@ -76,27 +77,50 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		}
 	}
 
-	/*public void importaDaFile()
+	public Vector<Double> importaDaFile(String nomeCitta, String dataInizio, String dataFine)
 	{
+		//JSONParser parser = new JSONParser();
+		String route = System.getProperty("user.dir") + "/src/main/resources/" + nomeCitta + "SalvataggioOrario.json";
+		
+		Vector<Double> datiSpeed=new Vector<Double>();
+		
+		JSONObject obj;
+		boolean flag=false;
+		String line = null;
 
-		JSONParser parser = new JSONParser();
-		try {
-			Object obj = parser.parse(new FileReader("/Users/Archivio.json"));
+	    try {
+	        FileReader fileReader = new FileReader(route);
 
-			JSONObject jsonObject = (JSONObject) obj;
+	        BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-			JSONArray List = (JSONArray) jsonObject.get("Company List");
-
-			Iterator<JSONObject> iterator = List.iterator();
-			while (iterator.hasNext()) {
-				System.out.println(iterator.next());
-			}
+	        while((line = bufferedReader.readLine()) != null) {
+	            obj = (JSONObject) new JSONParser().parse(line);
+	            
+	            if(dataInizio.equals((String)obj.get("data")))
+	              {  
+	            	flag=true;
+	              }
+	            
+	            if(flag==true)
+	            {
+	            	datiSpeed.add((double)obj.get("speed"));
+	            }
+	            
+	            if(dataFine.equals((String) obj.get("data")))
+	              {
+	            	flag=false;
+	              }
+	        }
+	        bufferedReader.close();   
+	        
+	        return datiSpeed;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+	    return datiSpeed;
 	}
-	 */
+
 	public JSONObject getWeatherInfo(String nomeCitta)
 	{
 		JSONObject speed;
@@ -212,7 +236,7 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	public void salvataggioOrario(String nomeCitta)
 	{
 
-		String route = System.getProperty("user.dir") + "/" + nomeCitta + "SalvataggioOrario.json";
+		String route = System.getProperty("user.dir") + "/src/main/resources/" + nomeCitta + "SalvataggioOrario.json";
 		File file = new File(route);
 
 		TimerTask timerTask = new TimerTask(){
@@ -247,7 +271,7 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		};
 
 		Timer timer = new Timer();
-		timer.schedule(timerTask, 0, 3600000); 
+		timer.schedule(timerTask, 0, 60000); //3600000
 	}
 
 }
