@@ -78,50 +78,6 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		}
 	}
 
-	public Vector<Double> importaDaFile(String nomeCitta, String dataInizio, String dataFine)
-	{
-		String route = System.getProperty("user.dir") + "/src/main/resources/" + nomeCitta + "SalvataggioOrario.json";
-		
-		Vector<Double> datiSpeed=new Vector<Double>();
-	
-		boolean flag=false;
-		String line = null;
-
-	    try {
-	        FileReader fileReader = new FileReader(route);
-
-	        BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-	        while((line = bufferedReader.readLine()) != null) {
-
-	            JSONTokener tokener = new JSONTokener(line);
-	            JSONObject object = new JSONObject(tokener);
-	            
-	            if(dataInizio.equals((String)object.get("data")))
-	              {  
-	            	flag=true;
-	              }
-	            
-	            if(flag==true)
-	            {
-	            	datiSpeed.add((double)object.get("speed"));
-	            }
-	            
-	            if(dataFine.equals((String) object.get("data")))
-	              {
-	            	flag=false;
-	              }
-		        
-	        }
-	        bufferedReader.close(); 
-	       
-	        return datiSpeed;
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	    return datiSpeed;
-	}
 
 	public JSONObject getWeatherInfo(String nomeCitta)
 	{

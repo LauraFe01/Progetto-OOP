@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.json.JSONObject;
 import com.ConfrontoSpeedVento.services.*;
 import com.ConfrontoSpeedVento.model.*;
+import com.ConfrontoSpeedVento.stats_filters.*;
 
 @RestController
 public class controller {
@@ -68,10 +69,10 @@ public class controller {
 	@GetMapping(value = "/filtro")
 	public String filtro(@RequestParam("nome") String nomeCitta,@RequestParam ("oraInizio") String oraInizio, @RequestParam("oraFine") String oraFine)
 	{
-			ServiziMeteo serviziMeteo = new ImplServiziMeteo();
-		    serviziMeteo.importaDaFile(nomeCitta, oraInizio, oraFine);
+			Filter filter = new Filter(nomeCitta, oraInizio, oraFine);
+		    filter.FilterCustomRange();
            
-		   return serviziMeteo.importaDaFile(nomeCitta, oraInizio, oraFine).toString();
+		   return filter.FilterCustomRange().toString();
 	}
 	
 }
