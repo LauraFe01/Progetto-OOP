@@ -42,10 +42,7 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	String APIkey = "02146a64e3858403deb292abe17b9b68";
 	String APIurl = "https://api.openweathermap.org/data/2.5/weather?q=";
 
-	public ImplServiziMeteo()
-	{
-	}
-
+    
 	public void esportaSuFile(String nomeCitta)
 	{
 		Citta city = getSpeedW(nomeCitta);
