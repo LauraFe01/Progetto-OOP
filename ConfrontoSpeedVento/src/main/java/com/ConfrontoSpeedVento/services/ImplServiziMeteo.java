@@ -80,12 +80,10 @@ public class ImplServiziMeteo implements ServiziMeteo{
 
 	public Vector<Double> importaDaFile(String nomeCitta, String dataInizio, String dataFine)
 	{
-		//JSONParser parser = new JSONParser();
 		String route = System.getProperty("user.dir") + "/src/main/resources/" + nomeCitta + "SalvataggioOrario.json";
 		
 		Vector<Double> datiSpeed=new Vector<Double>();
-		
-		//JSONObject obj;
+	
 		boolean flag=false;
 		String line = null;
 
@@ -95,14 +93,6 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	        BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 	        while((line = bufferedReader.readLine()) != null) {
-		        
-	        	//obj = (JSONObject) parser.parse(line);
-	        	/*
-	        	String resourceName = "/info.json";
-	            InputStream is = ReadJSONString.class.getResourceAsStream(resourceName);
-	            if (is == null) {
-	                throw new NullPointerException("Cannot find resource file " + resourceName);
-	            }*/
 
 	            JSONTokener tokener = new JSONTokener(line);
 	            JSONObject object = new JSONObject(tokener);
