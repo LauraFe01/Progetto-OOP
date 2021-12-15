@@ -20,14 +20,8 @@ public class cityCompare {
 	    obj2 = stats.statsCalculator(nome2, oraInizio, oraFine);
 	    
 	    JSONObject object1, object2;
-	    JSONObject mainObj= new JSONObject();
-	    JSONObject compare=new JSONObject();
 	    JSONArray nomi =new JSONArray();
-	   /*
-	    object = obj1.getString("Nome città");
-	    object = obj1.getString("Data inizio");
-	    object= obj1.getString("Data fine");
-	    */
+
 	    
 	    object1 = obj1.getJSONObject("Statistiche velocità vento");
 	    min1=object1.getDouble("Valore minimo");
@@ -41,44 +35,39 @@ public class cityCompare {
 	    average2=object2.getDouble("Valore medio");
 	    variance2=object2.getDouble("Varianza");
 	    
+	    JSONObject mainObj= new JSONObject();
 	    
-	    JSONObject compareNomi= new JSONObject();
-	    
-	    compare.put(nome1,nome2);
-	    nomi.put(compare);
+	    nomi.put(nome1);
+	    nomi.put(nome2);
 	    mainObj.put("nomi", nomi);
 	    
-	    JSONObject compareMin= new JSONObject();
+	
 	    JSONObject minV1 = new JSONObject();
 	    
 	    minV1.put("Valore minimo "+nome1, min1);
 	    minV1.put("Valore minimo "+nome2, min2);
-	    mainObj.put("Valori minimi", minV1);
+	    mainObj.put("Valori minimi velocità vento", minV1);
 	    
 	    
-	    JSONObject compareMax= new JSONObject();
 	    JSONObject maxV1 = new JSONObject();
 	    
 	    maxV1.put("Valore massimo "+nome1, max1);
 	    maxV1.put("Valore massimo "+nome2, max2);
-	    mainObj.put("Valori massimi", maxV1);
+	    mainObj.put("Valori massimi velocità vento", maxV1);
 	    
-	    
-	    JSONObject compareAverage= new JSONObject();
 	    JSONObject avgV1 = new JSONObject();
 
 	    
 	    avgV1.put("Valore medio "+nome1, average1);
 	    avgV1.put("Valore medio "+nome2, average2);
-	    mainObj.put("Valori medi", avgV1);
+	    mainObj.put("Valori medi velocità vento", avgV1);
 	    
-	    JSONObject compareVariance= new JSONObject();
 	    JSONObject varV1 = new JSONObject();
 
 	    
 	    varV1.put("Varianza "+nome1, variance1);
-	    varV1.put("Varianza"+nome2, variance2);
-	    mainObj.put("Varianze", varV1);
+	    varV1.put("Varianza "+nome2, variance2);
+	    mainObj.put("Varianze velocità vento", varV1);
 	    
 	   
 	    return mainObj;

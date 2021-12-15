@@ -30,7 +30,7 @@ public class datoVento {
 
 	public String getTime() {
 		Date date = new Date(time*1000L); 
-		SimpleDateFormat jdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat jdf = new SimpleDateFormat("yyyy-MM-dd HH:00:00");
 		jdf.setTimeZone(TimeZone.getTimeZone("GMT+1"));
 		String java_date = jdf.format(date);
 		return (java_date);
