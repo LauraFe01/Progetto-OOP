@@ -66,13 +66,21 @@ public class controller {
 	}
 	
 
-	@GetMapping(value = "/filtro")
+	/*@GetMapping(value = "/filtro")
 	public String filtro(@RequestParam("nome") String nomeCitta,@RequestParam ("oraInizio") String oraInizio, @RequestParam("oraFine") String oraFine)
 	{
 			Filter filter = new Filter(nomeCitta, oraInizio, oraFine);
 		    filter.FilterCustomRange();
            
 		   return filter.FilterCustomRange().toString();
+	}
+	*/
+	
+	@GetMapping(value= "/stats")
+	public ResponseEntity <Object> getStatsInfo (@RequestParam("nome") String nomeCitta,@RequestParam ("oraInizio") String oraInizio, @RequestParam("oraFine") String oraFine)
+	{
+		cityStats stats = new cityStats();
+		return new ResponseEntity<>(stats.statsCalculator(nomeCitta,oraInizio,oraFine).toString(), HttpStatus.OK);
 	}
 	
 }

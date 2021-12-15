@@ -19,6 +19,7 @@ public class Filter {
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
 	}
+	
 
 	public Vector<Double> FilterCustomRange()
 	{
