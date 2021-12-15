@@ -24,6 +24,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.client.RestTemplate;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import com.ConfrontoSpeedVento.model.Citta;
 import com.ConfrontoSpeedVento.model.datoVento;
@@ -84,7 +85,7 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		
 		Vector<Double> datiSpeed=new Vector<Double>();
 		
-		JSONObject obj;
+		//JSONObject obj;
 		boolean flag=false;
 		String line = null;
 
@@ -94,25 +95,36 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	        BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 	        while((line = bufferedReader.readLine()) != null) {
-	            obj = (JSONObject) new JSONParser().parse(line);
+		        
+	        	//obj = (JSONObject) parser.parse(line);
+	        	/*
+	        	String resourceName = "/info.json";
+	            InputStream is = ReadJSONString.class.getResourceAsStream(resourceName);
+	            if (is == null) {
+	                throw new NullPointerException("Cannot find resource file " + resourceName);
+	            }*/
+
+	            JSONTokener tokener = new JSONTokener(line);
+	            JSONObject object = new JSONObject(tokener);
 	            
-	            if(dataInizio.equals((String)obj.get("data")))
+	            if(dataInizio.equals((String)object.get("data")))
 	              {  
 	            	flag=true;
 	              }
 	            
 	            if(flag==true)
 	            {
-	            	datiSpeed.add((double)obj.get("speed"));
+	            	datiSpeed.add((double)object.get("speed"));
 	            }
 	            
-	            if(dataFine.equals((String) obj.get("data")))
+	            if(dataFine.equals((String) object.get("data")))
 	              {
 	            	flag=false;
 	              }
+		        
 	        }
-	        bufferedReader.close();   
-	        
+	        bufferedReader.close(); 
+	       
 	        return datiSpeed;
 			
 		} catch (Exception e) {
