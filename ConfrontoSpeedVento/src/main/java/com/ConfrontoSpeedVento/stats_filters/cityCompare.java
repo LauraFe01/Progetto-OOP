@@ -11,10 +11,7 @@ public class cityCompare extends cityStats{
 	private double variance1, variance2;
 	private JSONObject mainObj;
 	
-	
-	public JSONObject 
-	
-	
+	/*
 	public JSONObject statsCompare (String nome1, String nome2, String oraInizio, String oraFine)
 	{
 		cityStats stats = new cityStats();
@@ -23,7 +20,6 @@ public class cityCompare extends cityStats{
 	    
 	    JSONArray nomi =new JSONArray();
   
-	    object1 = obj1.getJSONObject("Statistiche velocità vento");
 	    min1=object1.getDouble("Valore minimo");
 	    max1=object1.getDouble("Valore massimo");
 	    average1=object1.getDouble("Valore medio");
@@ -72,5 +68,5 @@ public class cityCompare extends cityStats{
 	    return mainObj;
 	    
 	}
-	
+	*/
 }

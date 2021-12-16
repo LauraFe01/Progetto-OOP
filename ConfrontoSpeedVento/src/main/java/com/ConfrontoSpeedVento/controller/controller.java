@@ -85,13 +85,13 @@ public class controller {
 	}
 	
 	
-	/*@GetMapping(value= "/compare")
+	@GetMapping(value= "/compare")
 	public ResponseEntity <Object> getCompareInfo (@RequestParam("nome1") String nome1,@RequestParam("nome2") String nome2, @RequestParam ("oraInizio") String oraInizio, @RequestParam("oraFine") String oraFine)
 	{
-		cityCompare compare = new cityCompare();
-		return new ResponseEntity<>(compare.statsCompare(nome1,nome2,oraInizio,oraFine).toString(), HttpStatus.OK);
+		statsCompare compare = new statsCompare(nome1,nome2,oraInizio,oraFine);
+		return new ResponseEntity<>(compare.StatsCompToJSON().toString(), HttpStatus.OK);
 	}
-	*/
+	
 	
 }
 
