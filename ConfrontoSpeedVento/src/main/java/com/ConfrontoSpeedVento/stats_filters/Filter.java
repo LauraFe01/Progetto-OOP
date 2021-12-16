@@ -7,11 +7,14 @@ import java.util.Vector;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import com.ConfrontoSpeedVento.model.datoVento;
+
 public class Filter {
 
 	private String nomeCitta;
 	private String dataInizio;
 	private String dataFine;
+	//private Vector<Double> speed;
 
 	public Filter(String nomeCitta, String dataInizio, String dataFine)
 	{
@@ -65,4 +68,5 @@ public class Filter {
 		}
 		return datiSpeed;
 	}
+
 }

@@ -1,0 +1,1 @@
+{"data":"\n2021-12-14 07:58:30 GMT-04:00\n","name":"Provincia di Ancona","Id":3183087,"speed":1.79}

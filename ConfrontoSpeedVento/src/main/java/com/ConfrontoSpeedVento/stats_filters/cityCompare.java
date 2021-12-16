@@ -3,26 +3,26 @@ package com.ConfrontoSpeedVento.stats_filters;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class cityCompare {
+public class cityCompare extends cityStats{
 
 	private double min1, min2;
 	private double max1, max2;
 	private double average1, average2;
 	private double variance1, variance2;
+	private JSONObject mainObj;
+	
+	
+	public JSONObject 
 	
 	
 	public JSONObject statsCompare (String nome1, String nome2, String oraInizio, String oraFine)
 	{
 		cityStats stats = new cityStats();
-		JSONObject obj1;
-		JSONObject obj2;
-		obj1= stats.statsCalculator(nome1, oraInizio, oraFine);
-	    obj2 = stats.statsCalculator(nome2, oraInizio, oraFine);
+		stats.setStorageSpeed(nome1, oraInizio, oraFine);
+	    stats.setStorageSpeed(nome2, oraInizio, oraFine);
 	    
-	    JSONObject object1, object2;
 	    JSONArray nomi =new JSONArray();
-
-	    
+  
 	    object1 = obj1.getJSONObject("Statistiche velocità vento");
 	    min1=object1.getDouble("Valore minimo");
 	    max1=object1.getDouble("Valore massimo");
@@ -35,7 +35,6 @@ public class cityCompare {
 	    average2=object2.getDouble("Valore medio");
 	    variance2=object2.getDouble("Varianza");
 	    
-	    JSONObject mainObj= new JSONObject();
 	    
 	    nomi.put(nome1);
 	    nomi.put(nome2);
