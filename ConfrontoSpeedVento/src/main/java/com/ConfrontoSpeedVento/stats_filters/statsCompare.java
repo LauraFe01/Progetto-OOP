@@ -27,7 +27,7 @@ public class statsCompare extends cityStats {
 		storageSpeed1=super.setStorageSpeed(nome1, dataInizio, dataFine);
 		storageSpeed2=super.setStorageSpeed(nome2, dataInizio, dataFine);
 		this.dataInizio = dataInizio;
-		this.dataInizio = dataInizio;
+		this.dataFine = dataFine;
 		this.nome1 = nome1;
 		this.nome2 = nome2;
 	}
@@ -59,8 +59,8 @@ public class statsCompare extends cityStats {
 	{
 		double variazioneAvg=0.0;
 		
-		avg1 = super.minCalculator(storageSpeed1);
-		avg2 = super.minCalculator(storageSpeed2);
+		avg1 = super.averageCalculator(storageSpeed1);
+		avg2 = super.averageCalculator(storageSpeed2);
 		
 		variazioneAvg =((avg1/avg2)*100)-100;
 		return variazioneAvg;
@@ -70,8 +70,8 @@ public class statsCompare extends cityStats {
 	{
 		double variazioneVar=0.0;
 		
-		var1 = super.minCalculator(storageSpeed1);
-		var2 = super.minCalculator(storageSpeed2);
+		var1 = super.varianceCalculator(storageSpeed1);
+		var2 = super.varianceCalculator(storageSpeed2);
 		
 		variazioneVar =((var1/var2)*100)-100;
 		return variazioneVar;
@@ -101,7 +101,7 @@ public class statsCompare extends cityStats {
 		    
 		    maxV1.put("Valore massimo "+nome1, max1);
 		    maxV1.put("Valore massimo "+nome2, max2);
-		    maxV1.put("Variazione percentuale "+nome2, variazioneMax + "%");
+		    maxV1.put("Variazione percentuale ", variazioneMax + "%");
 		    mainObj.put("Valori massimi velocità vento", maxV1);
 		    
 		    
@@ -109,14 +109,14 @@ public class statsCompare extends cityStats {
 		    
 		    avgV1.put("Valore medio "+nome1, avg1);
 		    avgV1.put("Valore medio "+nome2, avg2);
-		    avgV1.put("Variazione percentuale "+nome2, variazioneAvg + "%");
+		    avgV1.put("Variazione percentuale ", variazioneAvg + "%");
 		    mainObj.put("Valori medi velocità vento", avgV1);
 		    
 		    JSONObject varV1 = new JSONObject();
 		    
 		    varV1.put("Varianza "+nome1, var1);
 		    varV1.put("Varianza "+nome2, var2);
-		    varV1.put("Variazione percentuale "+nome2, variazioneVar + "%");
+		    varV1.put("Variazione percentuale ", variazioneVar + "%");
 		    mainObj.put("Varianze velocità vento", varV1);
 		    
 		   
