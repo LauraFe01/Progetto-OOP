@@ -21,6 +21,7 @@ import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -37,6 +38,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.time.LocalDate;
 
+@Service
 public class ImplServiziMeteo implements ServiziMeteo{
 
 	String APIkey = "02146a64e3858403deb292abe17b9b68";

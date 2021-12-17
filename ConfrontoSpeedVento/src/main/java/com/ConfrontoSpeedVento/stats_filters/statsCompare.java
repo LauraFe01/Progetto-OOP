@@ -40,6 +40,7 @@ public class statsCompare extends cityStats {
 		max2 = super.maxCalculator(storageSpeed2);
 		
 	    variazioneMax =((max1/max2)*100)-100;
+	    variazioneMax = super.rounding(variazioneMax);
 		return variazioneMax;
 		
 	}
@@ -52,6 +53,7 @@ public class statsCompare extends cityStats {
 		min2 = super.minCalculator(storageSpeed2);
 		
 		variazioneMin =((min1/min2)*100)-100;
+		variazioneMin = super.rounding(variazioneMin);
 		return variazioneMin ;
 	}
 	
@@ -63,6 +65,7 @@ public class statsCompare extends cityStats {
 		avg2 = super.averageCalculator(storageSpeed2);
 		
 		variazioneAvg =((avg1/avg2)*100)-100;
+	    variazioneAvg = super.rounding(variazioneAvg);
 		return variazioneAvg;
 	}
 	
@@ -74,12 +77,14 @@ public class statsCompare extends cityStats {
 		var2 = super.varianceCalculator(storageSpeed2);
 		
 		variazioneVar =((var1/var2)*100)-100;
+		variazioneVar = super.rounding(variazioneVar);
 		return variazioneVar;
 	}
 	
 	public JSONObject StatsCompToJSON()
 	{
 		 JSONArray nomi =new JSONArray();
+		 JSONObject date =new JSONObject();
 		 JSONObject mainObj = new JSONObject();
 		 double variazioneMin= minCompare();
 		 double variazioneMax= maxCompare();
@@ -90,18 +95,22 @@ public class statsCompare extends cityStats {
 		    nomi.put(nome2);
 		    mainObj.put("nomi", nomi);
 		    
+		    date.put("dal ", dataInizio);
+		    date.put("al ",dataFine);
+		    mainObj.put("periodo di confronto ", date);
+		    
 		    JSONObject minV1 = new JSONObject();
 		    
 		    minV1.put("Valore minimo "+nome1, min1);
 		    minV1.put("Valore minimo "+nome2, min2);
-		    minV1.put("Variazione percentuale", variazioneMin);
+		    minV1.put("Variazione percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneMin);
 		    mainObj.put("Valori minimi velocità vento", minV1);
 		    
 		    JSONObject maxV1 = new JSONObject();
 		    
-		    maxV1.put("Valore massimo "+nome1, max1);
+		    maxV1.put("Valore massimo "+nome1, max1 );
 		    maxV1.put("Valore massimo "+nome2, max2);
-		    maxV1.put("Variazione percentuale ", variazioneMax + "%");
+		    maxV1.put("Variazione percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneMax + "%");
 		    mainObj.put("Valori massimi velocità vento", maxV1);
 		    
 		    
@@ -109,14 +118,14 @@ public class statsCompare extends cityStats {
 		    
 		    avgV1.put("Valore medio "+nome1, avg1);
 		    avgV1.put("Valore medio "+nome2, avg2);
-		    avgV1.put("Variazione percentuale ", variazioneAvg + "%");
+		    avgV1.put("Variazione percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneAvg + "%");
 		    mainObj.put("Valori medi velocità vento", avgV1);
 		    
 		    JSONObject varV1 = new JSONObject();
 		    
 		    varV1.put("Varianza "+nome1, var1);
 		    varV1.put("Varianza "+nome2, var2);
-		    varV1.put("Variazione percentuale ", variazioneVar + "%");
+		    varV1.put("Variazione Percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneVar + "%");
 		    mainObj.put("Varianze velocità vento", varV1);
 		    
 		   

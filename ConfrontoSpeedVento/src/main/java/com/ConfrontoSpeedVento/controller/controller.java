@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.json.JSONObject;
+import org.json.simple.parser.ParseException;
+
 import com.ConfrontoSpeedVento.services.*;
 import com.ConfrontoSpeedVento.model.*;
 import com.ConfrontoSpeedVento.stats_filters.*;
@@ -19,13 +21,13 @@ import com.ConfrontoSpeedVento.stats_filters.*;
 @RestController
 public class controller {
 
-	//@Autowired
-	//private ImplServiziMeteo serviziMeteo;
+	@Autowired
+	private ImplServiziMeteo serviziMeteo;
 	
 	@GetMapping(value= "/weatherInfo")
 	public ResponseEntity <Object> getWeatherInfo (@RequestParam("nome") String nomeCitta)
 	{
-		ServiziMeteo serviziMeteo = new ImplServiziMeteo();
+		//ServiziMeteo serviziMeteo = new ImplServiziMeteo();
 		return new ResponseEntity<>(serviziMeteo.getWeatherInfo(nomeCitta).toString(), HttpStatus.OK);
 	}
 
@@ -34,7 +36,7 @@ public class controller {
 	@GetMapping(value = "/save")
 	public String save(@RequestParam("nome") String nomeCitta)
 	{
-			ServiziMeteo serviziMeteo = new ImplServiziMeteo();
+			//ServiziMeteo serviziMeteo = new ImplServiziMeteo();
 		    serviziMeteo.esportaSuFile(nomeCitta);
   
 		   return "Il file è stato creato!";
@@ -45,7 +47,7 @@ public class controller {
 	@GetMapping(value="/weather")
     public ResponseEntity<Object> getCityWeather(@RequestParam("nome") String nomeCitta) 
 	{	
-	    ServiziMeteo serviziMeteo = new ImplServiziMeteo();
+	    //ServiziMeteo serviziMeteo = new ImplServiziMeteo();
 		Citta city = serviziMeteo.getSpeedW(nomeCitta);
 		
 		JSONObject obj = new JSONObject();
@@ -60,7 +62,7 @@ public class controller {
 	@GetMapping(value="/hourlySaving")
 	public String hourlySaving(@RequestParam("nome") String nomeCitta)
 	{
-		ServiziMeteo serviziMeteo = new ImplServiziMeteo();
+		//ServiziMeteo serviziMeteo = new ImplServiziMeteo();
 		serviziMeteo.salvataggioOrario(nomeCitta);
 		return("Salvataggio iniziato!");
 	}
@@ -78,10 +80,16 @@ public class controller {
 	
 	@GetMapping(value= "/stats")
 	public ResponseEntity <Object> getStatsInfo (@RequestParam("nome") String nomeCitta,@RequestParam ("oraInizio") String oraInizio, @RequestParam("oraFine") String oraFine)
-	{
+	         throws ParseException{
+		
 		cityStats stats = new cityStats();
 		stats.setStorageSpeed(nomeCitta, oraInizio, oraFine);
+		
+		try {
 		return new ResponseEntity<>(stats.statsToJSON(nomeCitta,oraInizio,oraFine).toString(), HttpStatus.OK);
+		}catch(ParseException e) {
+			System.out.println(e);
+		}
 	}
 	
 	

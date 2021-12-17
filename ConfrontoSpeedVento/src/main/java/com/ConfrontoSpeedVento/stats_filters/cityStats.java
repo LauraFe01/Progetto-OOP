@@ -5,21 +5,25 @@ import java.util.Collections;
 
 import org.json.JSONObject;
 
-public class cityStats{
+public class cityStats {
 	private double maxValue;
 	private double minValue;
 	private double average;
 	private double variance;
 
+
+
 	public double maxCalculator(Vector<Double> storageSpeed)
 	{
 		maxValue = Collections.max(storageSpeed);
+		maxValue = rounding(maxValue);
 		return maxValue;
 	}
 	
 	public double minCalculator(Vector<Double> storageSpeed)
 	{
 		minValue = Collections.min(storageSpeed);
+		minValue = rounding(minValue);
 		return minValue;
 	}
 
@@ -33,6 +37,7 @@ public class cityStats{
 		}
 
 		average = somma / storageSpeed.size();
+		average = rounding(average);
 		
 		return average;
 	}
@@ -46,6 +51,7 @@ public class cityStats{
 		}
 
 		variance = temp/(storageSpeed.size()-1);
+		variance = rounding(variance);
 		
 		return variance;
 	}
@@ -74,5 +80,10 @@ public class cityStats{
 		Vector<Double> storageSpeed = filter.FilterCustomRange();
 		return storageSpeed;
 	}
-
+	
+	public double rounding(double val) 
+	{
+		int rounded = (int) (val*100.0);
+		return (double)rounded/100;
+	}
 }
