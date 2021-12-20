@@ -164,7 +164,8 @@ Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSO
   ```
   
 ## Documentazione
-Il codice java è interamente documentato in Javadoc.
+Il codice java è interamente documentato e commentato in Javadoc.  
+Per conoscere le specifiche funzionalità di ogni classe e ogni metodo consultare il Javadoc.
 
 ## Autori
 Laura Ferretti e Edoardo Cecchini
