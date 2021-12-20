@@ -32,14 +32,14 @@ L'utente può effettuare richieste tramite Postman all'indirizzo
 ***
 Tipo | Rotta | Descrizione
 ---- | ---- | ----
-GET | `/hourlySaving?nome={city name}` | Salva in un file, con frequenza oraria, i dati relativi alla velocità del vento di una determinata città.
-GET | `/stats?nome={city name}&oraInizio={data inzio}&oraFine={data fine}` | Restituisce le statistiche fatte sulla velocità del vento di una determinata città, in una specifica fascia oraria, scelta dall'utente
-GET | `/compare?nome1={city1 name}&nome2={city2 nome}&oraInizio={data inzio}&oraFine={data fine}` | Confronta le statistiche relative alla velocità del vento, di due città inserite dall'utente, in una determinata fascia oraria
+GET | `/hourlySaving?nome={nomeCitta}` | Salva in un file, con frequenza oraria, i dati relativi alla velocità del vento di una determinata città.
+GET | `/stats?nome={nomeCitta}&oraInizio={data inzio}&oraFine={data fine}` | Restituisce le statistiche fatte sulla velocità del vento di una determinata città, in una specifica fascia oraria, scelta dall'utente
+GET | `/compare?nome1={nomeCitta1}&nome2={nomeCitta2}&oraInizio={data inzio}&oraFine={data fine}` | Confronta le statistiche relative alla velocità del vento, di due città inserite dall'utente, in una determinata fascia oraria
 ***
 Per effettuare richieste, all'utente basterà avviare l'applicazione come SpringBoot App, successivamente usando Postman, fare richieste secondo le rotte prima specificate.  
 In seguito forniremo la descrizione dettagliata di ogni rotta.
 
-1. /hourlySaving?nome={city name}
+1. /hourlySaving?nome={nomeCitta}
 
 Questa rotta permette di salvare le informazioni attuali sulla visibilità della città che volete. Il programma creerà un file col nome "CityName"SalvataggioOrario.json che si aggiornerà ogni ora. Se è già presente un file con lo stesso nome, il programma lo aprirà e, senza eliminare ciò che è presente, inizierà a scrivere le previsioni.  
 In Postman se tutto è andato a buon fine, visualizzerete un messaggio del tipo:
@@ -47,7 +47,7 @@ In Postman se tutto è andato a buon fine, visualizzerete un messaggio del tipo:
 Salvataggio iniziato!
 ```
 
-2. /stats?nome={city name}&oraInizio={data inzio}&oraFine={data fine}
+2. /stats?nome={nomeCitta}&oraInizio={dataInzio}&oraFine={dataFine}
 
 Questa rotta fornisce statistiche relative alla velocità del vento. In particolare, fornisce:  
 * valore minimo raggiunto in una determinata fascia oraria
@@ -55,8 +55,25 @@ Questa rotta fornisce statistiche relative alla velocità del vento. In particol
 * valore medio 
 * varianza  
 
+Al posto di {nomeCitta} deve essere inserito il nome della città di cui si vogliono fare le statistiche e al posto di {dataInizio} e {dataFine}, rispettivamente il giorno e l'orario dell'inizio e il giorno e l'orario della fine del periodo di cui si vogliono fare le statistiche.  
+
 A scopo dimostrativo viene fornito all'utente già un database chiamato "CityName"SalvataggioOrario.json, contenente valori relativi al periodo che va dalle ore 19:00 del 20/12/2021 alle ore 19:00 del 22/12/2021, delle seguenti città: Ancona, Roma, Milano e Pesaro.  
-Le statistiche vengono fatte sui dati contenuti nel file per cui se i parametri 
+Le statistiche vengono fatte sui dati contenuti nel file, se i parametri inseriti non risultano corretti verranno visualizzati messaggi di errore:  
+* Se l'utente inserisce una città non ammessa viene generata un'eccezione di tipo cityException e verrà visualizzato un messaggio di errore del tipo:  
+  ```
+  nomeCitta + " non è disponibile. Puoi scegliere tra: Ancona, Roma, Milano, Pesaro"
+  ```
+* Se l'utente inserisce una data non valida viene generata un'eccezione di tipo dataException e verrà visualizzato un messaggio di errore del tipo: 
+   ```
+  La data inserita non è corretta.
+   ```
+* Se l'utente inserisce una data in un formato non ammesso viene generata un'eccezione di tipo ParseException
+
+* Se l'utente inserisce una fascia oraria o una città di cui non sono presenti dati salvati viene generata un'eccezione di tipo vectorNullException e verrà visualizzato un messaggio di errore del tipo: 
+  ```
+  Dati non disponibili nell'arco di tempo selezionato
+   ```
+Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSONObject: 
 
 
 
