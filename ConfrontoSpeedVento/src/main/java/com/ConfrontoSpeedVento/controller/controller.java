@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import com.ConfrontoSpeedVento.services.*;
 import com.ConfrontoSpeedVento.exceptions.cityException;
 import com.ConfrontoSpeedVento.exceptions.dateException;
+import com.ConfrontoSpeedVento.exceptions.vectorNullException;
 import com.ConfrontoSpeedVento.model.*;
 import com.ConfrontoSpeedVento.stats_filters.*;
 
@@ -83,7 +84,7 @@ public class controller {
 	
 	@GetMapping(value= "/stats")
 	public ResponseEntity <Object> getStatsInfo (@RequestParam("nome") String nomeCitta,@RequestParam ("oraInizio") String oraInizio, @RequestParam("oraFine") String oraFine)
-	         throws cityException,dateException, ParseException
+	         throws cityException,dateException, ParseException, vectorNullException
 	{	
 		
 			cityStats stats = new cityStats();
@@ -96,7 +97,7 @@ public class controller {
 	
 	@GetMapping(value= "/compare")
 	public ResponseEntity <Object> getCompareInfo (@RequestParam("nome1") String nome1,@RequestParam("nome2") String nome2, @RequestParam ("oraInizio") String oraInizio, @RequestParam("oraFine") String oraFine)
-			throws cityException, dateException, ParseException
+			throws cityException, dateException, ParseException, vectorNullException
 	{
 		statsCompare compare = new statsCompare(nome1,nome2,oraInizio,oraFine);
 		return new ResponseEntity<>(compare.StatsCompToJSON().toString(), HttpStatus.OK);
