@@ -1,6 +1,7 @@
 package com.ConfrontoSpeedVento.services;
 
 import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,13 +39,32 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.time.LocalDate;
 
+/** Questa classe è l'implementazione dell'interfaccia ServiziMeteo.
+ * @author Edoardo Cecchini
+ * @author Laura Ferretti
+ */
+
 @Service
 public class ImplServiziMeteo implements ServiziMeteo{
 
+	/**
+	 * @param APIkey chiave necessaria per accedere all'API.
+	 * @param APIurl url necessario per accedere all'API.
+	 */
+	
 	String APIkey = "02146a64e3858403deb292abe17b9b68";
 	String APIurl = "https://api.openweathermap.org/data/2.5/weather?q=";
 
-    
+	/**
+	 * Questo metodo crea un file nella ???.
+	 * @param nomeCitta     Nome della città
+	 * @param city 	   		Oggetto citta 
+	 * @param nomeFile		Nome del file in cui vengono salvate le informazioni
+	 * @param todaysDate	Data attuale
+	 * @param route			Percorso dove salvare il file
+	 * 
+	 */
+
 	public void esportaSuFile(String nomeCitta)
 	{
 		Citta city = getSpeedW(nomeCitta);
@@ -74,7 +94,17 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		}
 	}
 
-
+	/**
+	 * Questo metodo attraverso l'APIurl e APIkey ottiene le informazioni meteo (velocità del vento) dall'API di Open Weather.
+	 * @param nomeCitta     Nome della città
+	 * @param speed 	   	JSONObject contenente la velocità del vento di una città
+	 * @param url			Unione tra l'APIurl e l'APIkey che crea l'url finale per il collegamento con l'API
+	 * @param rt			Variabile della classe RestTemplate necessaria per leggere il file JSON ottenuto dall'API
+	 * @param route			Percorso dove salvare il file
+	 * 
+	 * @return un JSONObject contenente le informazioni meteo sul vento della città scelta.
+	 */
+	
 	public JSONObject getWeatherInfo(String nomeCitta)
 	{
 		JSONObject speed;
@@ -121,7 +151,17 @@ public class ImplServiziMeteo implements ServiziMeteo{
 
 
 	}
-
+	
+	/**
+	 * Questo metodo attraverso l'APIurl e APIkey ottiene le informazioni meteo (velocità del vento) dall'API di Open Weather.
+	 * @param nomeCitta     Nome della città
+	 * @param object 	   	JSONObject che contiene le informazioni prese dall'API
+	 * @param weather		JSONObject che contiene le informazioni prese relative al vento
+	 * @param rt			Variabile della classe RestTemplate necessaria per leggere il file JSON ottenuto dall'API
+	 * @param route			Percorso dove salvare il file
+	 * 
+	 * @return un JSONObject contenente le informazioni meteo sul vento della città scelta.
+	 */
 
 	public Citta getSpeedW(String nomeCitta)
 	{
