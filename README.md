@@ -6,11 +6,10 @@ filtrarle in base alla periodicità, range personalizzabile dall'utente.
 
 ## Indice
 1. [Descrizione](#Descrizione) 
-2. [Installazione](#Installazione)
-3. [Rotte](#Rotte)
-4. [Test](#Test)
-5. [Documentazione](#Documentazione)
-6. [Autori](#Autori)   
+2. [Rotte](#Rotte)
+3. [Test](#Test)
+4. [Documentazione](#Documentazione)
+5. [Autori](#Autori)   
 
 ## Descrizione
 Tramite l'API OpenWeather il programma riceve, salva e fa statistiche sui dati meteo riguardanti la velocità del vento di una città
