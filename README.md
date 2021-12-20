@@ -45,6 +45,8 @@ In Postman se tutto è andato a buon fine, visualizzerete un messaggio del tipo:
 ```
 Salvataggio iniziato!
 ```
+Il file verrà salvato nel formato JSON all'interno si presenta nel seguente modo:
+
 
 ## 2. /stats?nome={nomeCitta}&oraInizio={dataInzio}&oraFine={dataFine}
 
