@@ -3,6 +3,7 @@ package com.ConfrontoSpeedVento.controller;
 
 import java.io.IOException;
 
+import java.text.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.json.JSONObject;
-import org.json.simple.parser.ParseException;
+//import org.json.simple.parser.ParseException;
 
 import com.ConfrontoSpeedVento.services.*;
+import com.ConfrontoSpeedVento.exceptions.cityException;
+import com.ConfrontoSpeedVento.exceptions.dateException;
 import com.ConfrontoSpeedVento.model.*;
 import com.ConfrontoSpeedVento.stats_filters.*;
 
@@ -80,21 +83,20 @@ public class controller {
 	
 	@GetMapping(value= "/stats")
 	public ResponseEntity <Object> getStatsInfo (@RequestParam("nome") String nomeCitta,@RequestParam ("oraInizio") String oraInizio, @RequestParam("oraFine") String oraFine)
-	         throws ParseException{
+	         throws cityException,dateException, ParseException
+	{	
 		
-		cityStats stats = new cityStats();
-		stats.setStorageSpeed(nomeCitta, oraInizio, oraFine);
+			cityStats stats = new cityStats();
+			stats.setStorageSpeed(nomeCitta, oraInizio, oraFine);
+			
+		return new ResponseEntity<>(stats.statsToJSON(nomeCitta,oraInizio,oraFine).toString(), HttpStatus.OK);	
 		
-		try {
-		return new ResponseEntity<>(stats.statsToJSON(nomeCitta,oraInizio,oraFine).toString(), HttpStatus.OK);
-		}catch(ParseException e) {
-			System.out.println(e);
-		}
 	}
 	
 	
 	@GetMapping(value= "/compare")
 	public ResponseEntity <Object> getCompareInfo (@RequestParam("nome1") String nome1,@RequestParam("nome2") String nome2, @RequestParam ("oraInizio") String oraInizio, @RequestParam("oraFine") String oraFine)
+			throws cityException, dateException, ParseException
 	{
 		statsCompare compare = new statsCompare(nome1,nome2,oraInizio,oraFine);
 		return new ResponseEntity<>(compare.StatsCompToJSON().toString(), HttpStatus.OK);

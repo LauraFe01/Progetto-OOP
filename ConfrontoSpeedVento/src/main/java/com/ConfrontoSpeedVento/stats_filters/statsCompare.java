@@ -1,9 +1,13 @@
 package com.ConfrontoSpeedVento.stats_filters;
 
+import java.text.ParseException;
 import java.util.Vector;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import com.ConfrontoSpeedVento.exceptions.cityException;
+import com.ConfrontoSpeedVento.exceptions.dateException;
 
 public class statsCompare extends cityStats {
 	
@@ -18,26 +22,29 @@ public class statsCompare extends cityStats {
 	private double var1;
 	private double var2;
 	private String nome1, nome2, dataInizio, dataFine;
-	
-	
-	
+		
 	public statsCompare(String nome1, String nome2, String dataInizio, String dataFine)
-	{
+			throws cityException, dateException, ParseException{
 		super();
+		
 		storageSpeed1=super.setStorageSpeed(nome1, dataInizio, dataFine);
-		storageSpeed2=super.setStorageSpeed(nome2, dataInizio, dataFine);
+	    storageSpeed2=super.setStorageSpeed(nome2, dataInizio, dataFine);
+
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
 		this.nome1 = nome1;
 		this.nome2 = nome2;
 	}
 	
+	
+	//ricorda di spiegare cosa succede in caso di divisione per 0
 	public double maxCompare()
 	{
 		double variazioneMax=0.0;
 		
 		max1 = super.maxCalculator(storageSpeed1);
 		max2 = super.maxCalculator(storageSpeed2);
+		
 		
 	    variazioneMax =((max1/max2)*100)-100;
 	    variazioneMax = super.rounding(variazioneMax);
@@ -50,11 +57,12 @@ public class statsCompare extends cityStats {
 		double variazioneMin=0.0;
 		
 		min1 = super.minCalculator(storageSpeed1);
-		min2 = super.minCalculator(storageSpeed2);
+		min2 = 0.0;
 		
+			
 		variazioneMin =((min1/min2)*100)-100;
 		variazioneMin = super.rounding(variazioneMin);
-		return variazioneMin ;
+		return variazioneMin;
 	}
 	
 	public double averageCompare()

@@ -1,9 +1,18 @@
 package com.ConfrontoSpeedVento.stats_filters;
 
 import java.util.Vector;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
+import java.util.TimeZone;
 
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
+
+import com.ConfrontoSpeedVento.exceptions.cityException;
+import com.ConfrontoSpeedVento.exceptions.dateException;
+
 
 public class cityStats {
 	private double maxValue;
@@ -57,6 +66,7 @@ public class cityStats {
 	}
 
 	public JSONObject statsToJSON(String nomeCitta, String dataInizio, String dataFine)
+			throws cityException, dateException,ParseException
 	{
 
 		JSONObject object = new JSONObject();
@@ -75,10 +85,35 @@ public class cityStats {
 	}
 
 	public Vector<Double> setStorageSpeed(String nomeCitta, String dataInizio, String dataFine) 
-	{
+			throws cityException, dateException, ParseException{
+		
+		if( !(nomeCitta.equals("Ancona")) && !(nomeCitta.equals("Roma")) && !nomeCitta.equals("Milano") && !nomeCitta.equals("Pesaro"))
+		{
+			throw new cityException(nomeCitta + " non è disponibile. Puoi scegliere tra: \"Ancona\", \"Roma\", \"Milano\", \"Pesaro\"");
+		}
+				
+		Date date = null;
+	
+		    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		    date = sdf.parse(dataInizio);
+		    if (!dataInizio.equals(sdf.format(date))) {
+		    	throw new dateException(" La data inserita non è corretta. ");
+		    }
+	
+		    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		    date = sdf.parse(dataFine);
+		    if (!dataFine.equals(sdf1.format(date))) {
+		    	throw new dateException(" La data inserita non è corretta. ");
+		    }
+		    
+		    
+		
+		
 		Filter filter = new Filter(nomeCitta,dataInizio,dataFine);
 		Vector<Double> storageSpeed = filter.FilterCustomRange();
+		
 		return storageSpeed;
+
 	}
 	
 	public double rounding(double val) 
