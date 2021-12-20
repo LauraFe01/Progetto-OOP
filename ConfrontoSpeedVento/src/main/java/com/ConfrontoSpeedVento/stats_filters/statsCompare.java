@@ -59,7 +59,7 @@ public class statsCompare extends cityStats {
 		double variazioneMin=0.0;
 
 		min1 = super.minCalculator(storageSpeed1);
-		min2 = 0.0;
+		min2 = super.minCalculator(storageSpeed2);;
 
 
 		variazioneMin =((min1/min2)*100)-100;
@@ -94,6 +94,7 @@ public class statsCompare extends cityStats {
 	public JSONObject StatsCompToJSON()
 	{
 		JSONArray nomi =new JSONArray();
+		JSONArray dati =new JSONArray();
 		JSONObject date =new JSONObject();
 		JSONObject mainObj = new JSONObject();
 		double variazioneMin= minCompare();
@@ -103,40 +104,51 @@ public class statsCompare extends cityStats {
 
 		nomi.put(nome1);
 		nomi.put(nome2);
-		mainObj.put("nomi", nomi);
+		mainObj.put("città", nomi);
 
 		date.put("dal ", dataInizio);
 		date.put("al ",dataFine);
 		mainObj.put("periodo di confronto ", date);
 
 		JSONObject minV1 = new JSONObject();
-
+		JSONObject minV = new JSONObject();
+		
 		minV1.put("Valore minimo "+nome1, min1);
 		minV1.put("Valore minimo "+nome2, min2);
 		minV1.put("Variazione percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneMin);
-		mainObj.put("Valori minimi velocità vento", minV1);
+		minV.put("Valori minimi velocità vento", minV1);
+		dati.put(minV);
+
 
 		JSONObject maxV1 = new JSONObject();
+		JSONObject maxV = new JSONObject();
 
 		maxV1.put("Valore massimo "+nome1, max1 );
 		maxV1.put("Valore massimo "+nome2, max2);
 		maxV1.put("Variazione percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneMax + "%");
-		mainObj.put("Valori massimi velocità vento", maxV1);
+		maxV.put("Valori massimi velocità vento", maxV1);
+		dati.put(maxV);
 
 
 		JSONObject avgV1 = new JSONObject();
-
+		JSONObject avgV = new JSONObject();
+		
 		avgV1.put("Valore medio "+nome1, avg1);
 		avgV1.put("Valore medio "+nome2, avg2);
-		avgV1.put("Variazione percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneAvg + "%");
-		mainObj.put("Valori medi velocità vento", avgV1);
+		avgV.put("Variazione percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneAvg );
+		avgV.put("Valori medi velocità vento", avgV1);
+		dati.put(avgV);
+	
 
 		JSONObject varV1 = new JSONObject();
-
+		JSONObject varV = new JSONObject();
+		
 		varV1.put("Varianza "+nome1, var1);
 		varV1.put("Varianza "+nome2, var2);
-		varV1.put("Variazione Percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneVar + "%");
-		mainObj.put("Varianze velocità vento", varV1);
+		varV1.put("Variazione Percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneVar );
+		varV.put("Varianze velocità vento", varV1);
+		dati.put(varV);
+		mainObj.put("dati", dati);
 
 
 		return mainObj;
