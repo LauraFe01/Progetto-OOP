@@ -261,7 +261,7 @@ Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSO
 
 Quetsa rotta fornisce solo i valori relativi alla velocità del vento di una determinata città, in una specifica fascia oraria, scelta dall'utente.
 
-Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSONObject del tipo: 
+Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSONArray del tipo: 
 ```
 [
     1.45,
