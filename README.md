@@ -259,9 +259,17 @@ Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSO
 ```
 ### 4. /filtro?nome={nomeCitta}&oraInizio={data inzio}&oraFine={data fine}
 
-Quetsa rotta fornisce tutte le informazioni relative alla velocità del vento di una determinata città, in una specifica fascia oraria, scelta dall'utente.
+Quetsa rotta fornisce solo i valori relativi alla velocità del vento di una determinata città, in una specifica fascia oraria, scelta dall'utente.
 
 Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSONObject del tipo: 
+```
+[
+    1.45,
+    0.68,
+    4.53
+]
+```
+## Test
 
 ## Documentazione
 Il codice java è interamente documentato e commentato in Javadoc.  
