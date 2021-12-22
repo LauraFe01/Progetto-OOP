@@ -10,9 +10,9 @@ import java.util.*;
  */
 
 /** Costruttore della classe.
- * @param nome               Nome della città
- * @param idOpenW            ID della città relativo all'API di Open Weather
- * @param vector             Dati del vento relativi alla città
+ * @param nome               Nome della città.
+ * @param idOpenW            ID della città relativo all'API di Open Weather.
+ * @param vector             Dati del vento relativi alla città.
  */
 
 
@@ -26,15 +26,6 @@ public class Citta {
 		this.nome=nome;
 		this.datiVento = new Vector<datoVento>();
 	}
-
-	/*
-	public Citta(String nome,long idOpenW)
-	{
-		this.nome=nome;
-		this.idOpenW=idOpenW;
-		this.datiVento = new Vector<datoVento>();
-	}
-	 */
 
 	/**
 	 * Metodo che restituisce il nome della città.

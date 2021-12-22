@@ -1,42 +1,18 @@
 package com.ConfrontoSpeedVento.services;
 
-import java.io.BufferedReader;
-
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
-
-import javax.net.ssl.HttpsURLConnection;
-
-//import org.json.simple.JSONArray;
-//import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONTokener;
-
 import com.ConfrontoSpeedVento.model.Citta;
 import com.ConfrontoSpeedVento.model.datoVento;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 import java.time.LocalDate;
 
 /** Questa classe è l'implementazione dell'interfaccia ServiziMeteo.
@@ -56,15 +32,16 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	String APIurl = "https://api.openweathermap.org/data/2.5/weather?q=";
 
 	/**
-	 * Questo metodo crea un file nella ???.
-	 * @param nomeCitta     Nome della città
-	 * @param city 	   		Oggetto citta 
-	 * @param nomeFile		Nome del file in cui vengono salvate le informazioni
-	 * @param todaysDate	Data attuale
-	 * @param route			Percorso dove salvare il file
+	 * Questo metodo crea un file contenente il nome della città, data, ora e la velocità del vento nel momento in cui viene richiamata.
+	 * @param nomeCitta     Nome della città.
+	 * @param city 	   		Oggetto citta.
+	 * @param nomeFile		Nome del file in cui vengono salvate le informazioni.
+	 * @param todaysDate	Data attuale.
+	 * @param route			Percorso dove salvare il file.
 	 * 
 	 */
 
+	@Override
 	public void esportaSuFile(String nomeCitta)
 	{
 		Citta city = getSpeedW(nomeCitta);
@@ -94,77 +71,47 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		}
 	}
 
+
 	/**
 	 * Questo metodo attraverso l'APIurl e APIkey ottiene le informazioni meteo (velocità del vento) dall'API di Open Weather.
-	 * @param nomeCitta     Nome della città
-	 * @param speed 	   	JSONObject contenente la velocità del vento di una città
-	 * @param url			Unione tra l'APIurl e l'APIkey che crea l'url finale per il collegamento con l'API
-	 * @param rt			Variabile della classe RestTemplate necessaria per leggere il file JSON ottenuto dall'API
-	 * @param route			Percorso dove salvare il file
+	 * @param nomeCitta     Nome della città.
+	 * @param speed 	   	JSONObject contenente la velocità del vento di una città.
+	 * @param url			Unione tra l'APIurl e l'APIkey che crea l'url finale per il collegamento con l'API.
+	 * @param rt			Variabile della classe RestTemplate necessaria per leggere il file JSON ottenuto dall'API.
+	 * @param route			Percorso dove salvare il file.
 	 * 
 	 * @return un JSONObject contenente le informazioni meteo sul vento della città scelta.
 	 */
 
+	@Override
 	public JSONObject getWeatherInfo(String nomeCitta)
 	{
 		JSONObject speed;
-		//String data = "";
-		//try {
+
 		String url = APIurl + nomeCitta + "&appid=" +  APIkey;
 
 		RestTemplate rt = new RestTemplate();
 
 		speed = new JSONObject(rt.getForObject(url, String.class));
-		/*
-			URLConnection connection = url.openConnection();
-			connection.connect();
-			InputStream in = connection.getInputStream();
 
-			String data = "";
-			String line = "";
-
-
-			InputStreamReader inR = new InputStreamReader( in );
-			BufferedReader buf = new BufferedReader( inR );
-
-			//try {
-				while ((line = buf.readLine()) != null) {
-					data+= line;
-
-				}
-			//} finally {
-				buf.close();
-     		//}
-
-
-			speed = (JSONObject) JSONValue.parseWithException(data);
-			return speed;
-
-		}catch(IOException | ParseException e) {
-			e.printStackTrace();
-		}
-		catch (Exception e) {
-	    	e.printStackTrace();
-		}
-		 */
 		return speed;
-
-
 	}
 
+
 	/**
-	 * Questo metodo cerca all'interno del JSONObject i vari dati statistici sulla velocità del vento e la data di campionamento
-	 * @param nomeCitta     Nome della città
-	 * @param object 	   	JSONObject che contiene le informazioni prese dall'API
-	 * @param weather		JSONObject che contiene le informazioni prese da object relative al vento
-	 * @param data			Oggetto della classe datoVento
-	 * @param city			Oggetto della classe citta, a cui al costruttore viene passato come parametro il nome della città
-	 * @param time			Variabile che contiene la data in cui sono state aggiornate le informazioni del vento, in formato UNIX
-	 * @param vector		Vettore di datoVento, contenente le statistiche
+	 * Questo metodo cerca all'interno del JSONObject il dato attuale sulla velocità del vento e la data di campionamento.
+	 * @param nomeCitta     Nome della città.
+	 * @param object 	   	JSONObject che contiene le informazioni prese dall'API.
+	 * @param weather		JSONObject che contiene le informazioni prese da object relative al vento.
+	 * @param data			Oggetto della classe datoVento.
+	 * @param city			Oggetto della classe citta, a cui al costruttore viene passato come parametro il nome della città.
+	 * @param time			Variabile che contiene la data in cui sono state aggiornate le informazioni del vento, in formato UNIX.
+	 * @param vector		Vettore di datoVento, contenente le statistiche.
 	 * 
-	 * @return un oggetto Citta con il proprio vettore contenente i dati sul vento settato
+	 * @return un oggetto Citta con il proprio vettore contenente i dati sul vento settato.
 	 */
 
+	@Override
 	public Citta getSpeedW(String nomeCitta)
 	{
 
@@ -194,18 +141,20 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		return city;
 	}
 
+
 	/**
-	 * Questo metodo cerca all'interno del JSONObject il nome della città e il relativo ID 
-	 * @param nomeCitta     Nome della città
-	 * @param object 	   	JSONObject che contiene le informazioni prese dall'API
-	 * @param id			Variabile contenente l'ID della citta preso dal JSONObject
-	 * @param data			Oggetto della classe datoVento
-	 * @param city			Oggetto della classe citta, a cui al costruttore viene passato come parametro il nome della città
-	 * @param cityObj		Variabile contenente il nome della citta preso dal JSONObject
+	 * Questo metodo cerca all'interno del JSONObject il nome della città e il relativo ID.
+	 * @param nomeCitta     Nome della città.
+	 * @param object 	   	JSONObject che contiene le informazioni prese dall'API.
+	 * @param id			Variabile contenente l'ID della citta preso dal JSONObject.
+	 * @param data			Oggetto della classe datoVento.
+	 * @param city			Oggetto della classe citta, a cui al costruttore viene passato come parametro il nome della città.
+	 * @param cityObj		Variabile contenente il nome della citta preso dal JSONObject.
 	 * 
-	 * @return un oggetto Citta con il nome e l'ID settati
+	 * @return un oggetto Citta con il nome e l'ID settati.
 	 */
 
+	@Override
 	public Citta getCityInfo(String nomeCitta)
 	{
 		JSONObject object = getWeatherInfo(nomeCitta);
@@ -226,14 +175,16 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		return city;
 	}
 
+
 	/**
-	 * Questo metodo converte un oggetto in un JSONObject 
+	 * Questo metodo crea un JSONObject con i dati contenuti in city
 	 * @param city     		Oggetto città da cui prendere le informazioni
 	 * @param object 	   	JSONObject riempito con le tutte le informazioni della città
 	 *
 	 * @return il JSONObject objcet contenente tutti i dati
 	 */
 
+	@Override
 	public JSONObject toJSON(Citta city)
 	{
 		JSONObject object = new JSONObject();
@@ -249,8 +200,9 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		return object;
 	}
 
+
 	/**
-	 * Questo metodo crea (o aggiorna se già esistente) un file contenente tutte le informazioni richieste di una determinata città all'interno della cartella resources, il campionamento avviene con fascia oraria 
+	 * Questo metodo crea (o aggiorna se già esistente) un file nominato: nomeCitta + "SalvataggioOrario.json", contenente tutte le informazioni richieste di una determinata città all'interno della cartella resources, il campionamento avviene con fascia oraria 
 	 * @param nomeCitta     	Nome della città
 	 * @param route				Percorso dove salvare il file
 	 * @param file     			File da creare nel percorso prestabilito
@@ -262,6 +214,7 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	 *
 	 */
 
+	@Override
 	public void salvataggioOrario(String nomeCitta)
 	{
 
