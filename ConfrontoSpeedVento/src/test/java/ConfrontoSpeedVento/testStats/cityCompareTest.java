@@ -13,9 +13,9 @@ import com.ConfrontoSpeedVento.stats_filters.cityStats;
 import com.ConfrontoSpeedVento.stats_filters.statsCompare;
 
 public class cityCompareTest {
-   
+
 	private statsCompare compare;
-	
+
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -23,16 +23,16 @@ public class cityCompareTest {
 	}
 
 	/**
-     * Serve per distruggere ciò che è stato inizializzato dal metodo setUp.
-     * throws java.lang.Exception
-     */
-	
+	 * Serve per distruggere ciò che è stato inizializzato dal metodo setUp.
+	 * throws java.lang.Exception
+	 */
+
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-	
+
 	@Test
-    @DisplayName("Statistiche comparate corrette")
+	@DisplayName("Statistiche comparate corrette")
 	void stat() {
 		//assertEquals(134.9, compare.maxCompare()); //in questo caso il test termina con failures
 		assertEquals(167.53, compare.maxCompare());
@@ -40,5 +40,5 @@ public class cityCompareTest {
 		assertEquals(126.47, compare.averageCompare());
 		assertEquals(1065.71, compare.varianceCompare());
 	}
-	
+
 }

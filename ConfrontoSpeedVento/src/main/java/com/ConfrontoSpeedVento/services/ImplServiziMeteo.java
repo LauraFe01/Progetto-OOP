@@ -31,44 +31,9 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	String APIkey = "02146a64e3858403deb292abe17b9b68";
 	String APIurl = "https://api.openweathermap.org/data/2.5/weather?q=";
 
-	/**
-	 * Questo metodo crea un file contenente il nome della città, data, ora e la velocità del vento nel momento in cui viene richiamata.
-	 * @param nomeCitta     Nome della città.
-	 */
-
-	@Override
-	public void esportaSuFile(String nomeCitta)
-	{
-		Citta city = getSpeedW(nomeCitta);
-
-		LocalDate todaysDate = LocalDate.now();
-
-		String nomeFile = nomeCitta+"_"+todaysDate;
-
-		String route = System.getProperty("user.dir")+nomeFile+".txt";
-
-		try {
-
-
-			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(route)));
-
-			JSONObject salvataggio = new JSONObject();
-
-			salvataggio = this.toJSON(city);
-
-			out.println(salvataggio.toString());
-
-			out.close();
-
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 
 	/**
-	 * Questo metodo attraverso l'APIurl e APIkey ottiene le informazioni meteo (velocità del vento) dall'API di Open Weather.
+	 * Questo metodo attraverso l'APIurl e APIkey ottiene tutte le informazioni meteo dall'API di Open Weather.
 	 * @param nomeCitta     Nome della città.
 	 * 
 	 * @return un JSONObject contenente le informazioni meteo sul vento della città scelta.
@@ -181,7 +146,8 @@ public class ImplServiziMeteo implements ServiziMeteo{
 
 
 	/**
-	 * Questo metodo crea (o aggiorna se già esistente) un file nominato: nomeCitta + "SalvataggioOrario.json", contenente tutte le informazioni richieste di una determinata città all'interno della cartella resources, il campionamento avviene con fascia oraria. 
+	 * Questo metodo crea (o aggiorna se già esistente) un file nominato:
+	 * nomeCitta + "SalvataggioOrario.json", contenente tutte le informazioni richieste di una determinata città all'interno della cartella resources, il campionamento avviene con fascia oraria. 
 	 * @param nomeCitta     	Nome della città.
 	 */
 
@@ -227,4 +193,38 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		timer.schedule(timerTask, 0, 3600000); 
 	}
 
+	/**
+	 * Questo metodo crea un file contenente il nome della città, data, ora e la velocità del vento nel momento in cui viene richiamata.
+	 * @param nomeCitta     Nome della città.
+	 */
+
+	@Override
+	public void esportaSuFile(String nomeCitta)
+	{
+		Citta city = getSpeedW(nomeCitta);
+
+		LocalDate todaysDate = LocalDate.now();
+
+		String nomeFile = nomeCitta+"_"+todaysDate;
+
+		String route = System.getProperty("user.dir")+nomeFile+".txt";
+
+		try {
+
+
+			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(route)));
+
+			JSONObject salvataggio = new JSONObject();
+
+			salvataggio = this.toJSON(city);
+
+			out.println(salvataggio.toString());
+
+			out.close();
+
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

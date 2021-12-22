@@ -17,25 +17,25 @@ public class cityStatsTest {
 	private Vector<Double> storageSpeed;
 
 
-	
+
 	@BeforeEach
 	void setUp() throws Exception {
 		stats = new cityStats();
 		storageSpeed=stats.setStorageSpeed("Roma", "2021-12-20 21:00:00", "2021-12-21 00:00:00");
-		}
+	}
 
 	/**
-     * Serve per distruggere ciò che è stato inizializzato dal metodo setUp.
-     * throws java.lang.Exception
-     */
-	
+	 * Serve per distruggere ciò che è stato inizializzato dal metodo setUp.
+	 * throws java.lang.Exception
+	 */
+
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-	
+
 
 	@Test
-    @DisplayName("Statistiche corrette")
+	@DisplayName("Statistiche corrette")
 	void stat() {
 		//assertEquals(1.3, stats.minCalculator(storageSpeed)); //in questo caso il test termina con failures
 		assertEquals(0.89, stats.minCalculator(storageSpeed));
@@ -43,11 +43,11 @@ public class cityStatsTest {
 		assertEquals(2.31, stats.averageCalculator(storageSpeed));
 		assertEquals(1.99, stats.varianceCalculator(storageSpeed));
 	}
-	
+
 	@Test
-    @DisplayName("Test eccezioni")
+	@DisplayName("Test eccezioni")
 	void eccezioni() {
-	
+
 		assertThrows(cityException.class, ()->stats.setStorageSpeed("Parigi", "2021-12-20 21:00:00", "2021-12-21 00:00:00"));
 	}
 }

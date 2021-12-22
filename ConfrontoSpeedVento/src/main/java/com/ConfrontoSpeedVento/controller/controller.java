@@ -13,6 +13,7 @@ import com.ConfrontoSpeedVento.services.*;
 import com.ConfrontoSpeedVento.exceptions.cityException;
 import com.ConfrontoSpeedVento.exceptions.dateException;
 import com.ConfrontoSpeedVento.exceptions.vectorNullException;
+import com.ConfrontoSpeedVento.exceptions.wrongDateException;
 import com.ConfrontoSpeedVento.model.*;
 import com.ConfrontoSpeedVento.stats_filters.*;
 
@@ -38,7 +39,6 @@ public class controller {
 	@GetMapping(value="/hourlySaving")
 	public String hourlySaving(@RequestParam("nome") String nomeCitta)
 	{
-		//ServiziMeteo serviziMeteo = new ImplServiziMeteo();
 		serviziMeteo.salvataggioOrario(nomeCitta);
 		return("Salvataggio iniziato!");
 	}
@@ -61,7 +61,7 @@ public class controller {
 
 	@GetMapping(value= "/stats")
 	public ResponseEntity <Object> getStatsInfo (@RequestParam("nome") String nomeCitta,@RequestParam ("oraInizio") String oraInizio, @RequestParam("oraFine") String oraFine)
-			throws cityException,dateException, ParseException, vectorNullException
+			throws cityException,dateException, ParseException, vectorNullException, wrongDateException
 	{	
 
 		cityStats stats = new cityStats();
@@ -90,7 +90,7 @@ public class controller {
 
 	@GetMapping(value= "/compare")
 	public ResponseEntity <Object> getCompareInfo (@RequestParam("nome1") String nome1,@RequestParam("nome2") String nome2, @RequestParam ("oraInizio") String oraInizio, @RequestParam("oraFine") String oraFine)
-			throws cityException, dateException, ParseException, vectorNullException
+			throws cityException, dateException, ParseException, vectorNullException, wrongDateException
 	{
 		statsCompare compare = new statsCompare(nome1,nome2,oraInizio,oraFine);
 		return new ResponseEntity<>(compare.StatsCompToJSON().toString(), HttpStatus.OK);
@@ -107,13 +107,12 @@ public class controller {
 	@GetMapping(value= "/weatherInfo")
 	public ResponseEntity <Object> getWeatherInfo (@RequestParam("nome") String nomeCitta)
 	{
-		//ServiziMeteo serviziMeteo = new ImplServiziMeteo();
 		return new ResponseEntity<>(serviziMeteo.getWeatherInfo(nomeCitta).toString(), HttpStatus.OK);
 	}
-	
+
 
 	/**
-	 * Rotta di tipo GET che permette di salvare le informazioni attuali sulla velocità del vento di una città scelta dall'utente.
+	 * Rotta di tipo GET che permette di salvare in un file le informazioni attuali sulla velocità del vento di una città scelta dall'utente.
 	 * 
 	 * @param nomeCitta rappresenta la città di cui si richiede la velocità del vento.
 	 * @return un file col nome "nomeCitta_todaysDate.txt" con le informazioni attuali.
@@ -122,7 +121,6 @@ public class controller {
 	@GetMapping(value = "/save")
 	public String save(@RequestParam("nome") String nomeCitta)
 	{
-		//ServiziMeteo serviziMeteo = new ImplServiziMeteo();
 		serviziMeteo.esportaSuFile(nomeCitta);
 
 		return "Il file è stato creato!";
@@ -139,7 +137,6 @@ public class controller {
 	@GetMapping(value="/speedW")
 	public ResponseEntity<Object> getCityWeather(@RequestParam("nome") String nomeCitta) 
 	{	
-		//ServiziMeteo serviziMeteo = new ImplServiziMeteo();
 		Citta city = serviziMeteo.getSpeedW(nomeCitta);
 
 		JSONObject obj = new JSONObject();

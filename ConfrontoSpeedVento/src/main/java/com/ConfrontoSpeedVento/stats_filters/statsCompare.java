@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import com.ConfrontoSpeedVento.exceptions.cityException;
 import com.ConfrontoSpeedVento.exceptions.dateException;
 import com.ConfrontoSpeedVento.exceptions.vectorNullException;
+import com.ConfrontoSpeedVento.exceptions.wrongDateException;
 
 /** Questa classe estende cityStats e gestisce la comparazione tra 2 città di tutti i dati relativi al vento trovati.
  * @author Edoardo Cecchini
@@ -40,7 +41,7 @@ public class statsCompare extends cityStats {
 	 */
 
 	public statsCompare(String nome1, String nome2, String dataInizio, String dataFine)
-			throws cityException, dateException, ParseException,vectorNullException
+			throws cityException, dateException, ParseException,vectorNullException, wrongDateException
 	{
 		super();
 
@@ -55,7 +56,7 @@ public class statsCompare extends cityStats {
 
 
 	/**
-	 * Questo metodo compara il valore massimo tra 2 città.
+	 * Questo metodo calcola la variazione percentuale del valore massimo della prima città rispetto alla seconda
 	 * 
 	 * @return un double con il valore della variazione massima tra le 2 città.
 	 */
@@ -75,7 +76,7 @@ public class statsCompare extends cityStats {
 	}
 
 	/**
-	 * Questo metodo compara il valore minimo tra 2 città.
+	 * Questo metodo calcola la variazione percentuale del valore minimo della prima città rispetto alla seconda
 	 * 
 	 * @return un double con il valore della variazione minima tra le 2 città.
 	 */
@@ -94,7 +95,7 @@ public class statsCompare extends cityStats {
 	}
 
 	/**
-	 * Questo metodo compara il valore medio tra 2 città.
+	 * Questo metodo calcola la variazione percentuale del valore medio della prima città rispetto alla seconda
 	 * 
 	 * @return un double con il valore medio della variazione tra le 2 città.
 	 */
@@ -113,7 +114,7 @@ public class statsCompare extends cityStats {
 
 
 	/**
-	 * Questo metodo compara il valore della varianza.
+	 * Questo metodo calcola la variazione percentuale della varianza della prima città rispetto alla seconda
 	 * 
 	 * @return un double con il valore della varianza percentuale della velocità del vento tra le 2 città
 	 */
