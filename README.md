@@ -258,7 +258,7 @@ Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSO
 ```
 ### 4. /filtro?nome={nomeCitta}&oraInizio={data inzio}&oraFine={data fine}
 
-Quetsa rotta fornisce solo i valori relativi alla velocità del vento di una determinata città, in una specifica fascia oraria, scelta dall'utente.
+Questa rotta fornisce solo i valori relativi alla velocità del vento di una determinata città, in una specifica fascia oraria, scelta dall'utente.
 
 Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSONArray del tipo: 
 ```
@@ -269,6 +269,7 @@ Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSO
 ]
 ```
 ## Test
+Abbiamo implementato varie classi utili per svolgere test, principalmente per quanto riguarda alcuni metodi che fanno statistiche e comparazioni, ma anche per eccezioni e per controllare dei metodi che restituiscono JSONObject. 
 
 ## Documentazione
 Il codice java è interamente documentato e commentato in Javadoc.  
