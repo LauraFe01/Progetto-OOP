@@ -1,21 +1,14 @@
 
 package com.ConfrontoSpeedVento.controller;
 
-import java.io.IOException;
-
-
 import java.text.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.json.JSONObject;
-//import org.json.simple.parser.ParseException;
-
 import com.ConfrontoSpeedVento.services.*;
 import com.ConfrontoSpeedVento.exceptions.cityException;
 import com.ConfrontoSpeedVento.exceptions.dateException;
@@ -105,6 +98,7 @@ public class controller {
 		//ServiziMeteo serviziMeteo = new ImplServiziMeteo();
 		return new ResponseEntity<>(serviziMeteo.getWeatherInfo(nomeCitta).toString(), HttpStatus.OK);
 	}
+	
 
 	/**
 	 * Rotta di tipo GET che permette di salvare le informazioni attuali sulla velocità del vento di una città scelta dall'utente.
