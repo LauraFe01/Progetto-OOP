@@ -35,14 +35,14 @@ public class controller {
 	@Autowired
 	private ImplServiziMeteo serviziMeteo;
 
-	/*
+
 	@GetMapping(value= "/weatherInfo")
 	public ResponseEntity <Object> getWeatherInfo (@RequestParam("nome") String nomeCitta)
 	{
 		//ServiziMeteo serviziMeteo = new ImplServiziMeteo();
 		return new ResponseEntity<>(serviziMeteo.getWeatherInfo(nomeCitta).toString(), HttpStatus.OK);
 	}
-	 */
+	 
 
 	/*
 	@GetMapping(value = "/save")
@@ -56,7 +56,7 @@ public class controller {
 
 	 */
 
-	/*	
+		
 	@GetMapping(value="/weather")
     public ResponseEntity<Object> getCityWeather(@RequestParam("nome") String nomeCitta) 
 	{	
@@ -71,7 +71,7 @@ public class controller {
 		return new ResponseEntity<> (obj.toString(), HttpStatus.OK);
 
     }
-	 */
+	
 
 	/**
 	 * Rotta di tipo GET che salva in un file con frequenza oraria i dati relativi alla velocità del vento di una determinata città.
