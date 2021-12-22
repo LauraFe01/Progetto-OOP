@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 /**
- * Classe che rappresenta le informazioni relative al vento di una città, in particolare la velocità.
+ * Classe che rappresenta le informazioni relative al vento di una città, in particolare la velocità e la data di campionamento.
  * @author Edoardo Cecchini
  * @author Laura Ferretti
  *
@@ -27,6 +27,9 @@ public class datoVento {
 		this.time = dataOra;
 	}
 
+	/** Costruttore (vuoto) della classe.
+	 */	
+	
 	public datoVento()
 	{
 		this.setSpeedVento(0);
@@ -51,7 +54,7 @@ public class datoVento {
 	}
 
 	/**
-	 * Metodo che restituisce la data e l'ora della misurazione del vento, prima del return avviene la conversione dal formato UNIX in cui viene ottenuta la data dall'API al formato standard "yyyy-MM-dd HH:mm:ss" 
+	 * Metodo che restituisce la data e l'ora della misurazione del vento, prima del return avviene la conversione dal formato UNIX (formato ottenuto dall'API) al formato standard "yyyy-MM-dd HH:mm:ss". 
 	 * @param date         		Data della misurazione
 	 * @param jdf          		Oggetto SimpleDateFormat contenente il formato della data
 	 * @param java_date    		Stringa contenente la data convertita
@@ -67,7 +70,7 @@ public class datoVento {
 	}
 
 	/**
-	 * Metodo che restituisce la data e l'ora della misurazione del vento.
+	 * Metodo che setta la data e l'ora della misurazione del vento.
 	 * @param int time
 	 */
 

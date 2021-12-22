@@ -1,10 +1,8 @@
 package com.ConfrontoSpeedVento.services;
 
-import java.util.Vector;
-
 /**
  * 
- * Interfaccia di Services con i metodi utili all'ottenimento delle statistiche del vento, viene implementata da ImplServiziMeteo.java
+ * Interfaccia di Services con i metodi utili all'ottenimento e al salvataggio delle informazioni relative al vento, viene implementata da ImplServiziMeteo.java
  * 
  * @author Edoardo Cecchini
  * @author Laura Ferretti
