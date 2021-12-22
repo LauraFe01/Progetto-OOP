@@ -6,10 +6,11 @@ filtrarle in base alla periodicità, range personalizzabile dall'utente.
 
 ## Indice
 1. [Descrizione](#Descrizione) 
-2. [Rotte](#Rotte)
-3. [Test](#Test)
-4. [Documentazione](#Documentazione)
-5. [Autori](#Autori)   
+2. [Installazione](#Installazione)
+3. [Rotte](#Rotte)
+4. [Test](#Test)
+5. [Documentazione](#Documentazione)
+6. [Autori](#Autori)   
 
 ## Descrizione
 Tramite l'API OpenWeather il programma riceve, salva e fa statistiche sui dati meteo riguardanti la velocità del vento di una città
@@ -24,6 +25,13 @@ http://api.openweathermap.org/data/2.5/weather?q={city%name}&appid={API%key}
 
 * city name è il nome della città selezionata
 * API key è il codice di accesso al servizio  
+
+## Installazione 
+Questa applicazione è installabile dal Prompt dei Comandi digitando:  
+```
+git clone https://github.com/LauraFe01/Progetto-OOP.git 
+```
+
 
 # Rotte
 L'utente può effettuare richieste tramite Postman all'indirizzo    
@@ -40,11 +48,14 @@ In seguito forniremo la descrizione dettagliata di ogni rotta.
 
 ## 1. /hourlySaving?nome={nomeCitta}
 
-Questa rotta permette di salvare le informazioni attuali sulla visibilità della città che volete. Il programma creerà un file col nome "CityName"SalvataggioOrario.json che si aggiornerà ogni ora. Se è già presente un file con lo stesso nome, il programma lo aprirà e, senza eliminare ciò che è presente, inizierà a scrivere le previsioni.  
+Questa rotta permette di salvare le informazioni attuali sulla velocità del vento della città che volete. Il programma creerà un file col nome "CityName"SalvataggioOrario.json che si aggiornerà ogni ora. Al posto di {nomeCitta} deve essere inserito il nome della città di cui si vogliono fare le statistiche, se è già presente un file con lo stesso nome, il programma lo aprirà e, senza eliminare ciò che è presente, inizierà a scrivere le previsioni.  
 In Postman se tutto è andato a buon fine, visualizzerete un messaggio del tipo:
 ```
 Salvataggio iniziato!
 ```
+Il file verrà salvato nel formato JSON all'interno si presenta nel seguente modo:
+
+![alt text](https://github.com/LauraFe01/Progetto-OOP/blob/master/esempio%salvataggio%su%file.png?raw=true)
 
 ## 2. /stats?nome={nomeCitta}&oraInizio={dataInzio}&oraFine={dataFine}
 
@@ -162,6 +173,104 @@ Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSO
 }
   ```
   
+### Rotte secondarie
+La nostra applicazione presenta anche rotte secondarie, create al momento dell'implementazione per favorire lo sviluppo del codice :
+  
+  Tipo | Rotta | Descrizione
+---- | ---- | ----
+GET | `/weatherInfo?nome={nomeCitta}` | Restituisce tutte le informazioni meteorologiche di una determinata città scelta dall'utente
+GET | `/save?nome={nomeCitta}` | Salva su file le informazioni relative alla velocità del vento al momento della richiesta
+GET | `/speedW?nome={nomeCitta}` | Restituisce le informazioni relative alla velocità del vento al momento della richiesta
+GET |`/filtro?nome={nomeCitta}&oraInizio={data inzio}&oraFine={data fine}` | Restituisce tutte le informazioni relative alla velocità del vento 
+di una determinata città, in una specifica fascia oraria, scelta dall'utente
+
+### 1. /weatherInfo?nome={nomeCitta}
+
+Questa rotta fornisce tutte le informazioni meteorologiche ricavate dall'API di OpenWeather di una determinata città scelta dall'utente e passata come parametro.
+
+Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSONObject del tipo: 
+```
+{
+    "visibility": 10000,
+    "timezone": 3600,
+    "main": {
+        "temp": 279.87,
+        "temp_min": 277.12,
+        "grnd_level": 1023,
+        "humidity": 55,
+        "pressure": 1024,
+        "sea_level": 1024,
+        "feels_like": 276.4,
+        "temp_max": 283.75
+    },
+    "clouds": {
+        "all": 11
+    },
+    "sys": {
+        "country": "IT",
+        "sunrise": 1640068781,
+        "sunset": 1640100803,
+        "id": 6770,
+        "type": 1
+    },
+    "dt": 1640079073,
+    "coord": {
+        "lon": 12.8903,
+        "lat": 43.9036
+    },
+    "weather": [
+        {
+            "icon": "02d",
+            "description": "few clouds",
+            "main": "Clouds",
+            "id": 801
+        }
+    ],
+    "name": "Pesaro",
+    "cod": 200,
+    "id": 3171173,
+    "base": "stations",
+    "wind": {
+        "deg": 137,
+        "speed": 5.55,
+        "gust": 7.25
+    }
+}
+```
+
+### 2. /save?nome={nomeCitta}
+
+Questa rotta permette di salvare le informazioni attuali sulla velocità del vento di una città scelta dall'utente. Il programma creerà un file col nome "nomeCitta_todaysDate.txt" che si aggiornerà ogni ora. Se è già presente un file con lo stesso nome, il programma lo aprirà e, senza eliminare ciò che è presente, aggiungere le informazioni attuali.  
+In Postman se tutto è andato a buon fine, visualizzerete un messaggio del tipo:
+```
+Il file è stato creato!
+```
+### 3. /speedW?nome={nomeCitta}
+Questa rotta fornisce le informazioni sulla velocità del vento di una determinata città scelta dall'utente e passata come parametro.
+
+Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSONObject del tipo: 
+```
+{
+    "data": "2021-12-21 10:00:00",
+    "name": "Pesaro",
+    "Id": 3171173,
+    "speed": 5.11
+}
+```
+### 4. /filtro?nome={nomeCitta}&oraInizio={data inzio}&oraFine={data fine}
+
+Quetsa rotta fornisce solo i valori relativi alla velocità del vento di una determinata città, in una specifica fascia oraria, scelta dall'utente.
+
+Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSONArray del tipo: 
+```
+[
+    1.45,
+    0.68,
+    4.53
+]
+```
+## Test
+
 ## Documentazione
 Il codice java è interamente documentato e commentato in Javadoc.  
 Per conoscere le specifiche funzionalità di ogni classe e ogni metodo consultare il Javadoc.
