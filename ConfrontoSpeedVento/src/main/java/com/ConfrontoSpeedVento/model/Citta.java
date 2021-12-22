@@ -16,8 +16,6 @@ public class Citta {
 
 	/** Costruttore della classe.
 	 * @param nome               Nome della città.
-	 * idOpenW            		 ID della città relativo all'API di Open Weather.
-	 * vector             		 Dati del vento relativi alla città.
 	 */
 
 	public Citta(String nome)

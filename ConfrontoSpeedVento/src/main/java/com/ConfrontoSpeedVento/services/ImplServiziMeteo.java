@@ -34,10 +34,6 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	/**
 	 * Questo metodo crea un file contenente il nome della città, data, ora e la velocità del vento nel momento in cui viene richiamata.
 	 * @param nomeCitta     Nome della città.
-	 * city 	   			Oggetto citta.
-	 * nomeFile				Nome del file in cui vengono salvate le informazioni.
-	 * todaysDate			Data attuale.
-	 * route				Percorso dove salvare il file.
 	 */
 
 	@Override
@@ -74,10 +70,6 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	/**
 	 * Questo metodo attraverso l'APIurl e APIkey ottiene le informazioni meteo (velocità del vento) dall'API di Open Weather.
 	 * @param nomeCitta     Nome della città.
-	 * speed 	   			JSONObject contenente la velocità del vento di una città.
-	 * url					Unione tra l'APIurl e l'APIkey che crea l'url finale per il collegamento con l'API.
-	 * rt					Variabile della classe RestTemplate necessaria per leggere il file JSON ottenuto dall'API.
-	 * route				Percorso dove salvare il file.
 	 * 
 	 * @return un JSONObject contenente le informazioni meteo sul vento della città scelta.
 	 */
@@ -100,12 +92,6 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	/**
 	 * Questo metodo cerca all'interno del JSONObject il dato attuale sulla velocità del vento e la data di campionamento.
 	 * @param nomeCitta     Nome della città.
-	 * object 	   			JSONObject che contiene le informazioni prese dall'API.
-	 * weather				JSONObject che contiene le informazioni prese da object relative al vento.
-	 * data					Oggetto della classe datoVento.
-	 * city					Oggetto della classe citta, a cui al costruttore viene passato come parametro il nome della città.
-	 * time					Variabile che contiene la data in cui sono state aggiornate le informazioni del vento, in formato UNIX.
-	 * vector				Vettore di datoVento, contenente le statistiche.
 	 * 
 	 * @return un oggetto Citta con il proprio vettore contenente i dati sul vento settato.
 	 */
@@ -144,11 +130,6 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	/**
 	 * Questo metodo cerca all'interno del JSONObject il nome della città e il relativo ID.
 	 * @param nomeCitta     Nome della città.
-	 * object 	   			JSONObject che contiene le informazioni prese dall'API.
-	 * id					Variabile contenente l'ID della citta preso dal JSONObject.
-	 * data					Oggetto della classe datoVento.
-	 * city					Oggetto della classe citta, a cui al costruttore viene passato come parametro il nome della città.
-	 * cityObj				Variabile contenente il nome della citta preso dal JSONObject.
 	 * 
 	 * @return un oggetto Citta con il nome e l'ID settati.
 	 */
@@ -178,7 +159,6 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	/**
 	 * Questo metodo crea un JSONObject con i dati contenuti in city.
 	 * @param city     		Oggetto città da cui prendere le informazioni.
-	 * object 	   			JSONObject riempito con le tutte le informazioni della città.
 	 *
 	 * @return il JSONObject objcet contenente tutti i dati.
 	 */
@@ -203,13 +183,6 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	/**
 	 * Questo metodo crea (o aggiorna se già esistente) un file nominato: nomeCitta + "SalvataggioOrario.json", contenente tutte le informazioni richieste di una determinata città all'interno della cartella resources, il campionamento avviene con fascia oraria. 
 	 * @param nomeCitta     	Nome della città.
-	 * route					Percorso dove salvare il file.
-	 * file     				File da creare nel percorso prestabilito.
-	 * timerTask				Oggetto della classe TimerTask usato per il timer orario.
-	 * city						Oggetto città con le informazioni del vento.
-	 * fileWriter				Oggetto della classe FileWriter usato per scrivere sul file.
-	 * bufferedWriter			Oggetto della classe BufferedWriter usato insieme a filewriter per scrivere sul file.
-	 * timer					Oggetto della classe Timer usato per creare il timer orario.
 	 */
 
 	@Override

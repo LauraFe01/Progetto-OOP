@@ -32,8 +32,6 @@ public class statsCompare extends cityStats {
 	 * @param nome2            		Nome della seconda città.
 	 * @param dataInizio            Data e ora di inizio del filtro.
 	 * @param dataFine             	Data e ora di fine del filtro.
-	 * storageSpeed1         		Dati del vento della prima città in un determinato tempo.
-	 * storageSpeed2        		Dati del vento della seconda città in un determinato tempo.
 	 * 
 	 * @throws cityException in caso di un errato inserimento del nome di una città.
 	 * @throws dateException in caso di inserimento di una data non valida.
@@ -58,9 +56,6 @@ public class statsCompare extends cityStats {
 
 	/**
 	 * Questo metodo compara il valore massimo tra 2 città.
-	 * max1     				Velocità del vento massima della prima città.
-	 * max2 	   				Velocità del vento massima della seconda città.
-	 * variazioneMax			Variazione massima del vento confrontata tra le 2 città.
 	 * 
 	 * @return un double con il valore della variazione massima tra le 2 città.
 	 */
@@ -81,9 +76,6 @@ public class statsCompare extends cityStats {
 
 	/**
 	 * Questo metodo compara il valore minimo tra 2 città.
-	 * min1     				Velocità del vento minima della prima città.
-	 * min2 	   				Velocità del vento minima della seconda città.
-	 * variazioneMin			Variazione minima del vento confrontata tra le 2 città.
 	 * 
 	 * @return un double con il valore della variazione minima tra le 2 città.
 	 */
@@ -103,9 +95,6 @@ public class statsCompare extends cityStats {
 
 	/**
 	 * Questo metodo compara il valore medio tra 2 città.
-	 * avg1     				Velocità del vento media della prima città.
-	 * avg2 	   				Velocità del vento media della seconda città.
-	 * variazioneAvg			Variazione della media del vento confrontata tra le 2 città.
 	 * 
 	 * @return un double con il valore medio della variazione tra le 2 città.
 	 */
@@ -124,10 +113,7 @@ public class statsCompare extends cityStats {
 
 
 	/**
-	 * Questo metodo compara il valore della varianza
-	 * var1     				Varianza della velocità del vento della prima città
-	 * var2 	   				Varianza della velocità del vento della seconda città
-	 * variazioneVar			Variazione della varianza del vento confrontata tra le 2 città
+	 * Questo metodo compara il valore della varianza.
 	 * 
 	 * @return un double con il valore della varianza percentuale della velocità del vento tra le 2 città
 	 */
@@ -145,19 +131,7 @@ public class statsCompare extends cityStats {
 	}
 
 	/**
-	 * Questo metodo converte tutte le statistiche comparate tra le 2 città in un JSON ordinato
-	 * nomi     			JSONArry contenente i nomi delle città
-	 * dati 	   			JSONArry contenente i dati sulle statistiche del vento delle città, inserito nel mainObj una volta riempito
-	 * date					JSONArry contenente le date e le ore del campionamento delle città
-	 * mainObj     			JSONObject che verrà stampato con l'intero contenuto
-	 * minV1 	   			JSONObject contenente il valore minimo della prima, della seconda città e la variazione percentuale di una città rispetto all'altra
-	 * minV					JSONObject inserito in dati contenente il minV1
-	 * maxV1 	   			JSONObject contenente il valore massimo della prima, della seconda città e la variazione percentuale di una città rispetto all'altra
-	 * maxV					JSONObject inserito in dati contenente il maxV1
-	 * avgV1 	   			JSONObject contenente il valore medio della prima, della seconda città e la variazione percentuale di una città rispetto all'altra
-	 * avgV					JSONObject inserito in dati contenente avgV1
-	 * varV1 	   			JSONObject contenente la varianza della prima, della seconda città e la variazione percentuale di una città rispetto all'altra
-	 * varV					JSONObject inserito in dati contenente varV1
+	 * Questo metodo converte tutte le statistiche comparate tra le 2 città in un JSON ordinato.
 	 * 
 	 * @return un JSONObject contenente tutte le informazioni richieste delle 2 città comparate tra di loro
 	 */

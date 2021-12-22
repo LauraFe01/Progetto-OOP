@@ -24,7 +24,6 @@ public class cityStats {
 	/**
 	 * Questo metodo calcola il valore massimo delle velocità del vento presenti nel vettore.
 	 * @param storageSpeed     		Vettore che contine i dati sulle velocità del vento.
-	 * maxValue						Variabile che contiene la massima velocità del vento presente.
 	 *
 	 * @return double maxValue contenente il valore massimo nel vettore.
 	 */
@@ -39,7 +38,6 @@ public class cityStats {
 	/**
 	 * Questo metodo calcola il valore minimo delle velocità del vento presenti nel vettore.
 	 * @param storageSpeed     		Vettore che contine i dati sulle velocità del vento.
-	 * minValue						Variabile che contiene la minima velocità del vento presente.
 	 *
 	 * @return double minValue contenente il valore minimo nel vettore.
 	 */
@@ -54,8 +52,6 @@ public class cityStats {
 	/**
 	 * Questo metodo calcola il valore medio delle velocità del vento presenti nel vettore.
 	 * @param storageSpeed     		Vettore che contine i dati sulle velocità del vento.
-	 * somma						Somma di tutti i valori presenti nel vettore.
-	 * average						Variabile che contiene la media delle velocità del vento presenti.
 	 *
 	 * @return double average contenente la media dei valori presenti nel vettore.
 	 */
@@ -78,10 +74,6 @@ public class cityStats {
 	/**
 	 * Questo metodo calcola il valore della varianza delle velocità del vento presenti nel vettore
 	 * @param storageSpeed     		Vettore che contine i dati sulle velocità del vento.
-	 * temp							Variabile di supporto utile ai calcoli della varianza.
-	 * a							Variabile utilizzata dal for in cui vengono messi a uno a uno i valori di storageSpeed.
-	 * variance						Variabile che contiene la varianza delle velocità del vento presenti.
-	 * average						Variabile che contiene la media delle velocità del vento presenti.
 	 *
 	 * @return double variance contenente la varianza dei valori presenti nel vettore.
 	 */
@@ -105,10 +97,6 @@ public class cityStats {
 	 * @param nomeCitta     		Nome della città.
 	 * @param dataInizio     		Data e ora di inizio campionamento.
 	 * @param dataFine     			Data e ora di fine campionamento.
-	 * storageSpeed     			Vettore che contine i dati sulle velocità del vento.
-	 * object						JSONObject in cui inserire le informazioni.
-	 * speed_data					JSONObject in cui inserire solo le informazioni del vento (così da creare un JSON ordinato).
-	 * storageSpeed					Variabile che contiene la varianza delle velocità del vento presenti.
 	 * 
 	 * @return JSONObject contenente tutte le informazioni, nome, data e ora inizio e fine campionamento, valore massimo, minimo, media, variazione e varianza percentuale.
 	 * 
@@ -142,11 +130,7 @@ public class cityStats {
 	 * Questo metodo ritorna il vettore con i dati del vento di una città in una determinata fascia oraria.
 	 * @param nomeCitta     		Nome della città.
 	 * @param dataInizio     		Data e ora di inizio campionamento.
-	 * @param dataFine     			Data e ora di fine campionamento.
-	 * date     					Variabile in cui inserire la data e ora formattata.
-	 * sdf							Oggetto della classe SimpleDateFormat contenente il formato corretto in cui avere la data e ora.
-	 * filter						Oggetto della classe Filter.
-	 * speed_data					JSONObject in cui inserire le informazioni del vento in base al filtro orario inserito dall'utente utilizzando il metodo FilterCustomRange() della classe Filter. 
+	 * @param dataFine     			Data e ora di fine campionamento. 
 	 * 
 	 * @return Vector double contenente tutte le informazioni prese da uno storage di una determinata città in un determinato lasso di tempo.
 	 * 
@@ -196,7 +180,6 @@ public class cityStats {
 	/**
 	 * Questo metodo permette di arrotondare i valori al centesimo
 	 * @param val     				Valore da arrotondare
-	 * rounded     					Variabile contenente il valore arrotondato
 	 * 
 	 * @return il valore inserito arrodondato al secondo numero dopo la virgola
 	 */

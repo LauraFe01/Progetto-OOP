@@ -32,12 +32,6 @@ public class Filter {
 
 	/**
 	 * Questo metodo legge un file e restituisce un vettore contenente i dati della velocità del vento di una città nella fascia oraria richiesta
-	 * route     			Percorso in cui risiede il file da leggere.
-	 * datiSpeed 			Vector contenente le velocità del vento.
-	 * flag					Boolean che diventa true se all'interno del file trova la data di inizio inserita e false quando trova la data di fine.
-	 * line					Variabile di supporto utilizzata per leggere il file linea per linea.
-	 * tokener				Oggetto della classe JSONTokener che estrae dalla stinga un token.
-	 * object				JSONObject contenente il token.
 	 * 
 	 * @return un Vector contenente i dati delle velocità del vento di una città nella fascia oraria specificata.
 	 */

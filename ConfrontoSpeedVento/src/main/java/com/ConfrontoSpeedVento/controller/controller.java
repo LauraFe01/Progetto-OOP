@@ -133,9 +133,6 @@ public class controller {
 	 * Rotta di tipo GET che restituisce le informazioni sulla velocità del vento di una determinata città scelta dall'utente e passata come parametro.
 	 * 
 	 * @param nomeCitta rappresenta la città di cui si richiede la velocità del vento.
-	 * city 			oggetto della classe Citta con le informazioni del vento relative alla città passata come parametro.
-	 * obj 				JSONObject dove inserire le varie informazioni sulla velocità del vento di una determinata città.
-	 * 
 	 * @return un JSONObject contenente il nome e l'ID della città richiesta, la velocità del vento e la data di campionamento. 
 	 */
 
@@ -157,9 +154,9 @@ public class controller {
 
 	/**
 	 * Rotta di tipo GET che fornisce solo i valori relativi alla velocità del vento di una determinata città, in una specifica fascia oraria, scelta dall'utente.
-	 * @param nomeCitta rappresenta la città di cui si richiedono le statistiche.
-	 * @param oraInizio rappresenta l'ora di inizio della fascia oraria di cui si richiedono le statistiche.
-	 * @param oraFine 	rappresenta l'ora di fine della fascia oraria di cui si richiedono le statistiche.
+	 * @param nomeCitta 	rappresenta la città di cui si richiedono le statistiche.
+	 * @param oraInizio 	rappresenta l'ora di inizio della fascia oraria di cui si richiedono le statistiche.
+	 * @param oraFine 		rappresenta l'ora di fine della fascia oraria di cui si richiedono le statistiche.
 	 * @return un JSONObject contenente solo i valori della velocità del vento di una città in una determinata fascia di tempo.
 	 */
 
