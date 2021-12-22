@@ -55,7 +55,7 @@ Salvataggio iniziato!
 ```
 Il file verrà salvato nel formato JSON all'interno si presenta nel seguente modo:
 
-![alt text](https://github.com/LauraFe01/Progetto-OOP/blob/master/esempio%salvataggio%su%file.png?raw=true)
+![alt text](https://github.com/LauraFe01/Progetto-OOP/blob/master/esempio%20salvataggio%20su%20file.png)
 
 ## 2. /stats?nome={nomeCitta}&oraInizio={dataInzio}&oraFine={dataFine}
 
