@@ -48,7 +48,7 @@ In seguito forniremo la descrizione dettagliata di ogni rotta.
 
 ## 1. /hourlySaving?nome={nomeCitta}
 
-Questa rotta permette di salvare le informazioni attuali sulla velocità del vento della città che volete. Il programma creerà un file col nome "CityName"SalvataggioOrario.json che si aggiornerà ogni ora. Se è già presente un file con lo stesso nome, il programma lo aprirà e, senza eliminare ciò che è presente, inizierà a scrivere le previsioni.  
+Questa rotta permette di salvare le informazioni attuali sulla velocità del vento della città che volete. Il programma creerà un file col nome "CityName"SalvataggioOrario.json che si aggiornerà ogni ora. Al posto di {nomeCitta} deve essere inserito il nome della città di cui si vogliono fare le statistiche, se è già presente un file con lo stesso nome, il programma lo aprirà e, senza eliminare ciò che è presente, inizierà a scrivere le previsioni.  
 In Postman se tutto è andato a buon fine, visualizzerete un messaggio del tipo:
 ```
 Salvataggio iniziato!
