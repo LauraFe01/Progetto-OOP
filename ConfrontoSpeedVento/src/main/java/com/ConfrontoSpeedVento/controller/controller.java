@@ -35,6 +35,13 @@ public class controller {
 	@Autowired
 	private ImplServiziMeteo serviziMeteo;
 
+	/**
+	 * Rotta di tipo GET che fornisce tutte le informazioni meteorologiche ricavate dall'API di OpenWeather di una determinata città passata come parametro.
+	 * 
+	 * @param nomeCitta rappresenta la città di cui si richiede la velocità del vento
+	 * @return un JSONObject con tutte le informazioni metereologiche di quella città
+	 */
+	
 	/*
 	@GetMapping(value= "/weatherInfo")
 	public ResponseEntity <Object> getWeatherInfo (@RequestParam("nome") String nomeCitta)
@@ -44,6 +51,13 @@ public class controller {
 	}
 	 */
 
+	/**
+	 * Rotta di tipo GET che permette di salvare le informazioni attuali sulla velocità del vento di una città scelta dall'utente
+	 * 
+	 * @param nomeCitta rappresenta la città di cui si richiede la velocità del vento
+	 * @return un file col nome "nomeCitta_todaysDate.txt" che si aggiornerà ogni ora
+	 */
+	
 	/*
 	@GetMapping(value = "/save")
 	public String save(@RequestParam("nome") String nomeCitta)
@@ -56,8 +70,18 @@ public class controller {
 
 	 */
 
+	
+	/**
+	 * Rotta di tipo GET che restituisce le informazioni sulla velocità del vento di una determinata città scelta dall'utente e passata come parametro.
+	 * 
+	 * @param nomeCitta rappresenta la città di cui si richiede la velocità del vento.
+	 * @param city 		oggetto della classe Citta con le informazioni del vento relative alla città passata come parametro
+	 * @param obj 		JSONObject dove inserire le varie informazioni sulla velocità del vento di una determinata città
+	 * @return un JSONObject contenente il nome e l'ID della città richiesta, la velocità del vento e la data di campionamento 
+	 */
+	
 	/*	
-	@GetMapping(value="/weather")
+	@GetMapping(value="/speedW")
     public ResponseEntity<Object> getCityWeather(@RequestParam("nome") String nomeCitta) 
 	{	
 	    //ServiziMeteo serviziMeteo = new ImplServiziMeteo();
@@ -88,6 +112,16 @@ public class controller {
 		return("Salvataggio iniziato!");
 	}
 
+	
+	/**
+	 * Rotta di tipo GET che fornisce solo i valori relativi alla velocità del vento di una determinata città, in una specifica fascia oraria, scelta dall'utente.
+	 * @param nomeCitta rappresenta la città di cui si richiedono le statistiche.
+	 * @param oraInizio rappresenta l'ora di inizio della fascia oraria di cui si richiedono le statistiche.
+	 * @param oraFine 	rappresenta l'ora di fine della fascia oraria di cui si richiedono le statistiche.
+	 * @return la velocità del vento di una città in una determinata fascia di tempo
+	 */
+	
+	
 	/*
 	@GetMapping(value = "/filtro")
 	public String filtro(@RequestParam("nome") String nomeCitta,@RequestParam ("oraInizio") String oraInizio, @RequestParam("oraFine") String oraFine)
@@ -97,7 +131,6 @@ public class controller {
 
 		   return filter.FilterCustomRange().toString();
 	}
-
 	 */
 
 	/**
@@ -120,7 +153,6 @@ public class controller {
 		return new ResponseEntity<>(stats.statsToJSON(nomeCitta,oraInizio,oraFine).toString(), HttpStatus.OK);	
 
 	}
-
 
 	/**
 	 * Rotta di tipo GET che confronta le statistiche relative alla velocità del vento, di due città inserite dall'utente, in una determinata fascia oraria

@@ -51,7 +51,7 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	 * @param APIkey chiave necessaria per accedere all'API.
 	 * @param APIurl url necessario per accedere all'API.
 	 */
-	
+
 	String APIkey = "02146a64e3858403deb292abe17b9b68";
 	String APIurl = "https://api.openweathermap.org/data/2.5/weather?q=";
 
@@ -104,7 +104,7 @@ public class ImplServiziMeteo implements ServiziMeteo{
 	 * 
 	 * @return un JSONObject contenente le informazioni meteo sul vento della città scelta.
 	 */
-	
+
 	public JSONObject getWeatherInfo(String nomeCitta)
 	{
 		JSONObject speed;
@@ -151,16 +151,18 @@ public class ImplServiziMeteo implements ServiziMeteo{
 
 
 	}
-	
+
 	/**
-	 * Questo metodo attraverso l'APIurl e APIkey ottiene le informazioni meteo (velocità del vento) dall'API di Open Weather.
+	 * Questo metodo cerca all'interno del JSONObject i vari dati statistici sulla velocità del vento e la data di campionamento
 	 * @param nomeCitta     Nome della città
 	 * @param object 	   	JSONObject che contiene le informazioni prese dall'API
-	 * @param weather		JSONObject che contiene le informazioni prese relative al vento
-	 * @param rt			Variabile della classe RestTemplate necessaria per leggere il file JSON ottenuto dall'API
-	 * @param route			Percorso dove salvare il file
+	 * @param weather		JSONObject che contiene le informazioni prese da object relative al vento
+	 * @param data			Oggetto della classe datoVento
+	 * @param city			Oggetto della classe citta, a cui al costruttore viene passato come parametro il nome della città
+	 * @param time			Variabile che contiene la data in cui sono state aggiornate le informazioni del vento, in formato UNIX
+	 * @param vector		Vettore di datoVento, contenente le statistiche
 	 * 
-	 * @return un JSONObject contenente le informazioni meteo sul vento della città scelta.
+	 * @return un oggetto Citta con il proprio vettore contenente i dati sul vento settato
 	 */
 
 	public Citta getSpeedW(String nomeCitta)
@@ -192,6 +194,18 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		return city;
 	}
 
+	/**
+	 * Questo metodo cerca all'interno del JSONObject il nome della città e il relativo ID 
+	 * @param nomeCitta     Nome della città
+	 * @param object 	   	JSONObject che contiene le informazioni prese dall'API
+	 * @param id			Variabile contenente l'ID della citta preso dal JSONObject
+	 * @param data			Oggetto della classe datoVento
+	 * @param city			Oggetto della classe citta, a cui al costruttore viene passato come parametro il nome della città
+	 * @param cityObj		Variabile contenente il nome della citta preso dal JSONObject
+	 * 
+	 * @return un oggetto Citta con il nome e l'ID settati
+	 */
+
 	public Citta getCityInfo(String nomeCitta)
 	{
 		JSONObject object = getWeatherInfo(nomeCitta);
@@ -212,6 +226,14 @@ public class ImplServiziMeteo implements ServiziMeteo{
 		return city;
 	}
 
+	/**
+	 * Questo metodo converte un oggetto in un JSONObject 
+	 * @param city     		Oggetto città da cui prendere le informazioni
+	 * @param object 	   	JSONObject riempito con le tutte le informazioni della città
+	 *
+	 * @return il JSONObject objcet contenente tutti i dati
+	 */
+
 	public JSONObject toJSON(Citta city)
 	{
 		JSONObject object = new JSONObject();
@@ -226,6 +248,19 @@ public class ImplServiziMeteo implements ServiziMeteo{
 
 		return object;
 	}
+
+	/**
+	 * Questo metodo crea (o aggiorna se già esistente) un file contenente tutte le informazioni richieste di una determinata città all'interno della cartella resources, il campionamento avviene con fascia oraria 
+	 * @param nomeCitta     	Nome della città
+	 * @param route				Percorso dove salvare il file
+	 * @param file     			File da creare nel percorso prestabilito
+	 * @param timerTask			Oggetto della classe TimerTask usato per il timer orario
+	 * @param city				Oggetto città con le informazioni del vento
+	 * @param fileWriter		Oggetto della classe FileWriter usato per scrivere sul file
+	 * @param bufferedWriter	Oggetto della classe BufferedWriter usato insieme a filewriter per scrivere sul file
+	 * @param timer				Oggetto della classe Timer usato per creare il timer orario
+	 *
+	 */
 
 	public void salvataggioOrario(String nomeCitta)
 	{
