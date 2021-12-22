@@ -72,7 +72,7 @@ Al posto di {nomeCitta} deve essere inserito il nome della città di cui si vogl
 
 ![alt text](https://github.com/LauraFe01/Progetto-OOP/blob/master/esempioPostman1.png)
 
-A scopo dimostrativo viene fornito all'utente già un database chiamato "CityName"SalvataggioOrario.json, contenente valori relativi al periodo che va dalle ore 19:00 del 20/12/2021 alle ore 19:00 del 22/12/2021, aggiornati ogni ora, delle seguenti città: Ancona, Roma, Milano e Pesaro.  
+A scopo dimostrativo viene fornito all'utente già un database chiamato "CityName"SalvataggioOrario.json, contenente valori relativi al periodo che va dalle ore 19:00 del 20/12/2021 alle ore 16:00 del 22/12/2021, aggiornati ogni ora, delle seguenti città: Ancona, Roma, Milano e Pesaro.  
 Le statistiche vengono fatte sui dati contenuti nel file, se i parametri inseriti non risultano corretti verranno visualizzati messaggi di errore:  
 * Se l'utente inserisce una città non ammessa viene generata un'eccezione di tipo cityException e verrà visualizzato un messaggio di errore del tipo:  
   ```
@@ -120,7 +120,7 @@ fare le statistiche (nel formato "yyyy-MM-dd HH:mm:ss").
 
 ![alt text](https://github.com/LauraFe01/Progetto-OOP/blob/master/esempioPostman.png)
 
-A scopo dimostrativo viene fornito all'utente già un database chiamato "CityName"SalvataggioOrario.json, contenente valori relativi al periodo che va dalle ore 19:00 del 20/12/2021 alle ore 19:00 del 22/12/2021, aggiornati ogni ora, delle seguenti città: Ancona, Roma, Milano e Pesaro.  
+A scopo dimostrativo viene fornito all'utente già un database chiamato "CityName"SalvataggioOrario.json, contenente valori relativi al periodo che va dalle ore 19:00 del 20/12/2021 alle ore 16:00 del 22/12/2021, aggiornati ogni ora, delle seguenti città: Ancona, Roma, Milano e Pesaro.  
 Le statistiche vengono fatte sui dati contenuti nel file, se i parametri inseriti non risultano corretti verranno visualizzati messaggi di errore:  
 * Se l'utente inserisce una città non ammessa viene generata un'eccezione di tipo cityException e verrà visualizzato un messaggio di errore del tipo:  
   ```
