@@ -181,8 +181,7 @@ La nostra applicazione presenta anche rotte secondarie, create al momento dell'i
 GET | `/weatherInfo?nome={nomeCitta}` | Restituisce tutte le informazioni meteorologiche di una determinata città scelta dall'utente
 GET | `/save?nome={nomeCitta}` | Salva su file le informazioni relative alla velocità del vento al momento della richiesta
 GET | `/speedW?nome={nomeCitta}` | Restituisce le informazioni relative alla velocità del vento al momento della richiesta
-GET |`/filtro?nome={nomeCitta}&oraInizio={data inzio}&oraFine={data fine}` | Restituisce tutte le informazioni relative alla velocità del vento 
-di una determinata città, in una specifica fascia oraria, scelta dall'utente
+GET |`/filtro?nome={nomeCitta}&oraInizio={data inzio}&oraFine={data fine}` | Restituisce tutte le informazioni relative alla velocità del vento di una determinata città, in una specifica fascia oraria, scelta dall'utente
 
 ### 1. /weatherInfo?nome={nomeCitta}
 
