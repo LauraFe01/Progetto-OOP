@@ -1,12 +1,9 @@
 package com.ConfrontoSpeedVento.stats_filters;
 
 import java.text.ParseException;
-
 import java.util.Vector;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.ConfrontoSpeedVento.exceptions.cityException;
 import com.ConfrontoSpeedVento.exceptions.dateException;
 import com.ConfrontoSpeedVento.exceptions.vectorNullException;
@@ -29,14 +26,19 @@ public class statsCompare extends cityStats {
 	private double var1;
 	private double var2;
 	private String nome1, nome2, dataInizio, dataFine;
-	
+
 	/** Costruttore della classe.
-	 * @param nome1            		Nome della prima città
-	 * @param nome2            		Nome della seconda città
-	 * @param dataInizio            Data e ora di inizio del filtro
-	 * @param dataFine             	Data e ora di fine del filtro
-	 * @param storageSpeed1         Dati del vento della prima città in un determinato tempo
-	 * @param storageSpeed2         Dati del vento della seconda città in un determinato tempo
+	 * @param nome1            		Nome della prima città.
+	 * @param nome2            		Nome della seconda città.
+	 * @param dataInizio            Data e ora di inizio del filtro.
+	 * @param dataFine             	Data e ora di fine del filtro.
+	 * storageSpeed1         		Dati del vento della prima città in un determinato tempo.
+	 * storageSpeed2        		Dati del vento della seconda città in un determinato tempo.
+	 * 
+	 * @throws cityException in caso di un errato inserimento del nome di una città.
+	 * @throws dateException in caso di inserimento di una data non valida.
+	 * @throws ParseException in caso di un inserimento di una data in un formato non ammesso.
+	 * @throws vectorNullException in caso di un inserimento di una fascia oraria o una città di cui non sono presenti dati salvati.
 	 */
 
 	public statsCompare(String nome1, String nome2, String dataInizio, String dataFine)
@@ -55,15 +57,14 @@ public class statsCompare extends cityStats {
 
 
 	/**
-	 * Questo metodo compara il valore massimo
-	 * @param max1     			Velocità del vento massima della prima città
-	 * @param max2 	   			Velocità del vento massima della seconda città
-	 * @param variazioneMax		Variazione massima del vento confrontata tra le 2 città
+	 * Questo metodo compara il valore massimo tra 2 città.
+	 * max1     				Velocità del vento massima della prima città.
+	 * max2 	   				Velocità del vento massima della seconda città.
+	 * variazioneMax			Variazione massima del vento confrontata tra le 2 città.
 	 * 
-	 * @return un double con il valore della variazione massima tra le 2 città
+	 * @return un double con il valore della variazione massima tra le 2 città.
 	 */
-	
-	//ricorda di spiegare cosa succede in caso di divisione per 0
+
 	public double maxCompare()
 	{
 		double variazioneMax=0.0;
@@ -77,14 +78,14 @@ public class statsCompare extends cityStats {
 		return variazioneMax;
 
 	}
-	
+
 	/**
-	 * Questo metodo compara il valore minimo
-	 * @param min1     			Velocità del vento minima della prima città
-	 * @param min2 	   			Velocità del vento minima della seconda città
-	 * @param variazioneMin		Variazione minima del vento confrontata tra le 2 città
+	 * Questo metodo compara il valore minimo tra 2 città.
+	 * min1     				Velocità del vento minima della prima città.
+	 * min2 	   				Velocità del vento minima della seconda città.
+	 * variazioneMin			Variazione minima del vento confrontata tra le 2 città.
 	 * 
-	 * @return un double con il valore della variazione minima tra le 2 città
+	 * @return un double con il valore della variazione minima tra le 2 città.
 	 */
 
 	public double minCompare()
@@ -99,14 +100,14 @@ public class statsCompare extends cityStats {
 		variazioneMin = super.rounding(variazioneMin);
 		return variazioneMin;
 	}
-	
+
 	/**
-	 * Questo metodo compara il valore medio
-	 * @param avg1     			Velocità del vento media della prima città
-	 * @param avg2 	   			Velocità del vento media della seconda città
-	 * @param variazioneAvg		Variazione della media del vento confrontata tra le 2 città
+	 * Questo metodo compara il valore medio tra 2 città.
+	 * avg1     				Velocità del vento media della prima città.
+	 * avg2 	   				Velocità del vento media della seconda città.
+	 * variazioneAvg			Variazione della media del vento confrontata tra le 2 città.
 	 * 
-	 * @return un double con il valore medio della variazione tra le 2 città
+	 * @return un double con il valore medio della variazione tra le 2 città.
 	 */
 
 	public double averageCompare()
@@ -121,16 +122,16 @@ public class statsCompare extends cityStats {
 		return variazioneAvg;
 	}
 
-	
+
 	/**
 	 * Questo metodo compara il valore della varianza
-	 * @param var1     			Varianza della velocità del vento della prima città
-	 * @param var2 	   			Varianza della velocità del vento della seconda città
-	 * @param variazioneVar		Variazione della varianza del vento confrontata tra le 2 città
+	 * var1     				Varianza della velocità del vento della prima città
+	 * var2 	   				Varianza della velocità del vento della seconda città
+	 * variazioneVar			Variazione della varianza del vento confrontata tra le 2 città
 	 * 
 	 * @return un double con il valore della varianza percentuale della velocità del vento tra le 2 città
 	 */
-	
+
 	public double varianceCompare()
 	{
 		double variazioneVar=0.0;
@@ -142,21 +143,21 @@ public class statsCompare extends cityStats {
 		variazioneVar = super.rounding(variazioneVar);
 		return variazioneVar;
 	}
-	
+
 	/**
 	 * Questo metodo converte tutte le statistiche comparate tra le 2 città in un JSON ordinato
-	 * @param nomi     			JSONArry contenente i nomi delle città
-	 * @param dati 	   			JSONArry contenente i dati sulle statistiche del vento delle città, inserito nel mainObj una volta riempito
-	 * @param date				JSONArry contenente le date e le ore del campionamento delle città
-	 * @param mainObj     		JSONObject che verrà stampato con l'intero contenuto
-	 * @param minV1 	   		JSONObject contenente il valore minimo della prima, della seconda città e la variazione percentuale di una città rispetto all'altra
-	 * @param minV				JSONObject inserito in dati contenente il minV1
-	 * @param maxV1 	   		JSONObject contenente il valore massimo della prima, della seconda città e la variazione percentuale di una città rispetto all'altra
-	 * @param maxV				JSONObject inserito in dati contenente il maxV1
-	 * @param avgV1 	   		JSONObject contenente il valore medio della prima, della seconda città e la variazione percentuale di una città rispetto all'altra
-	 * @param avgV				JSONObject inserito in dati contenente avgV1
-	 * @param varV1 	   		JSONObject contenente la varianza della prima, della seconda città e la variazione percentuale di una città rispetto all'altra
-	 * @param varV				JSONObject inserito in dati contenente varV1
+	 * nomi     			JSONArry contenente i nomi delle città
+	 * dati 	   			JSONArry contenente i dati sulle statistiche del vento delle città, inserito nel mainObj una volta riempito
+	 * date					JSONArry contenente le date e le ore del campionamento delle città
+	 * mainObj     			JSONObject che verrà stampato con l'intero contenuto
+	 * minV1 	   			JSONObject contenente il valore minimo della prima, della seconda città e la variazione percentuale di una città rispetto all'altra
+	 * minV					JSONObject inserito in dati contenente il minV1
+	 * maxV1 	   			JSONObject contenente il valore massimo della prima, della seconda città e la variazione percentuale di una città rispetto all'altra
+	 * maxV					JSONObject inserito in dati contenente il maxV1
+	 * avgV1 	   			JSONObject contenente il valore medio della prima, della seconda città e la variazione percentuale di una città rispetto all'altra
+	 * avgV					JSONObject inserito in dati contenente avgV1
+	 * varV1 	   			JSONObject contenente la varianza della prima, della seconda città e la variazione percentuale di una città rispetto all'altra
+	 * varV					JSONObject inserito in dati contenente varV1
 	 * 
 	 * @return un JSONObject contenente tutte le informazioni richieste delle 2 città comparate tra di loro
 	 */
@@ -189,7 +190,6 @@ public class statsCompare extends cityStats {
 		minV.put("Valori minimi velocità vento", minV1);
 		dati.put(minV);
 
-
 		JSONObject maxV1 = new JSONObject();
 		JSONObject maxV = new JSONObject();
 
@@ -205,7 +205,7 @@ public class statsCompare extends cityStats {
 
 		avgV1.put("Valore medio "+nome1, avg1);
 		avgV1.put("Valore medio "+nome2, avg2);
-		avgV.put("Variazione percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneAvg );
+		avgV1.put("Variazione percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneAvg );
 		avgV.put("Valori medi velocità vento", avgV1);
 		dati.put(avgV);
 

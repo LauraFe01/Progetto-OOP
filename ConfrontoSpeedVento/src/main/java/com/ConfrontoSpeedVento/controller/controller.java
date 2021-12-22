@@ -50,7 +50,13 @@ public class controller {
 	 * @param nomeCitta rappresenta la città di cui si richiedono le statistiche.
 	 * @param oraInizio rappresenta l'ora di inizio della fascia oraria di cui si richiedono le statistiche.
 	 * @param oraFine 	rappresenta l'ora di fine della fascia oraria di cui si richiedono le statistiche.
+	 * 
 	 * @return un JSONObject contenente la velocità del vento massima, minima, media, varianza e variazione percentuale di una città in una determinata fascia di tempo.
+	 * 
+	 * @throws cityException in caso di un errato inserimento del nome di una città.
+	 * @throws dateException in caso di inserimento di una data non valida.
+	 * @throws ParseException in caso di un inserimento di una data in un formato non ammesso.
+	 * @throws vectorNullException in caso di un inserimento di una fascia oraria o una città di cui non sono presenti dati salvati.
 	 */
 
 	@GetMapping(value= "/stats")
@@ -73,7 +79,13 @@ public class controller {
 	 * @param nome2 	rappresenta la seconda città di cui si richiedono le statistiche da confrontare.
 	 * @param oraInizio rappresenta l'ora di inizio della fascia oraria di cui si richiedono le statistiche da comparare.
 	 * @param oraFine 	rappresenta l'ora di fine della fascia oraria di cui si richiedono le statistiche da comparare.
-	 * @return un JSONObject contenente il confronto delle le statistiche del vento tra le 2 città inserite, in particolare la velocità del vento massima,minima,media,varianza e la variazione percentuale tra le 2. 
+	 * 
+	 * @return un JSONObject contenente il confronto delle le statistiche del vento tra le 2 città inserite, in particolare la velocità del vento massima,minima,media,varianza e la variazione percentuale tra le 2.
+	 * 
+	 * @throws cityException in caso di un errato inserimento del nome di una città.
+	 * @throws dateException in caso di inserimento di una data non valida.
+	 * @throws ParseException in caso di un inserimento di una data in un formato non ammesso.
+	 * @throws vectorNullException in caso di un inserimento di una fascia oraria o una città di cui non sono presenti dati salvati.
 	 */
 
 	@GetMapping(value= "/compare")
@@ -121,8 +133,9 @@ public class controller {
 	 * Rotta di tipo GET che restituisce le informazioni sulla velocità del vento di una determinata città scelta dall'utente e passata come parametro.
 	 * 
 	 * @param nomeCitta rappresenta la città di cui si richiede la velocità del vento.
-	 * @param city 		oggetto della classe Citta con le informazioni del vento relative alla città passata come parametro.
-	 * @param obj 		JSONObject dove inserire le varie informazioni sulla velocità del vento di una determinata città.
+	 * city 			oggetto della classe Citta con le informazioni del vento relative alla città passata come parametro.
+	 * obj 				JSONObject dove inserire le varie informazioni sulla velocità del vento di una determinata città.
+	 * 
 	 * @return un JSONObject contenente il nome e l'ID della città richiesta, la velocità del vento e la data di campionamento. 
 	 */
 

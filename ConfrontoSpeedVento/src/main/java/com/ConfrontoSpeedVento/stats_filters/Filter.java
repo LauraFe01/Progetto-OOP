@@ -3,29 +3,24 @@ package com.ConfrontoSpeedVento.stats_filters;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Vector;
-
 import org.json.JSONObject;
 import org.json.JSONTokener;
-
-import com.ConfrontoSpeedVento.model.datoVento;
 
 /** Questa classe gestisce il filtro orario in cui possono essere visualizzate le informazioni relative alla velocità del vento delle città
  * @author Edoardo Cecchini
  * @author Laura Ferretti
  */
 
-
 public class Filter {
 
 	private String nomeCitta;
 	private String dataInizio;
 	private String dataFine;
-	//private Vector<Double> speed;
-	
+
 	/** Costruttore della classe.
-	 * @param nomeCitta             Nome della città
-	 * @param dataInizio            Data e ora di inizio del filtro
-	 * @param dataFine             	Data e ora di fine del filtro
+	 * @param nomeCitta             Nome della città.
+	 * @param dataInizio            Data e ora di inizio del filtro.
+	 * @param dataFine             	Data e ora di fine del filtro.
 	 */
 
 	public Filter(String nomeCitta, String dataInizio, String dataFine)
@@ -34,19 +29,19 @@ public class Filter {
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
 	}
-	
+
 	/**
-	 * Questo metodo legge un file e restituisce le statistiche del vento di una città nella fascia oraria richiesta
-	 * @param route     	Percorso in cui risiede il file da leggere
-	 * @param datiSpeed 	Vector contenente le velocità del vento
-	 * @param flag			Boolean che diventa true se all'interno del file trova la data di inizio inserita e false quando trova la data di fine
-	 * @param line			Variabile di supporto utilizzata per leggere il file linea per linea
-	 * @param tokener		Oggetto della classe JSONTokener che estrae dalla stinga un token
-	 * @param object		JSONObject contenente il token
+	 * Questo metodo legge un file e restituisce un vettore contenente i dati della velocità del vento di una città nella fascia oraria richiesta
+	 * route     			Percorso in cui risiede il file da leggere.
+	 * datiSpeed 			Vector contenente le velocità del vento.
+	 * flag					Boolean che diventa true se all'interno del file trova la data di inizio inserita e false quando trova la data di fine.
+	 * line					Variabile di supporto utilizzata per leggere il file linea per linea.
+	 * tokener				Oggetto della classe JSONTokener che estrae dalla stinga un token.
+	 * object				JSONObject contenente il token.
 	 * 
 	 * @return un Vector contenente i dati delle velocità del vento di una città nella fascia oraria specificata.
 	 */
-	
+
 	public Vector<Double> FilterCustomRange()
 	{
 		String route = System.getProperty("user.dir") + "/src/main/resources/" + nomeCitta + "SalvataggioOrario.json";

@@ -1,7 +1,7 @@
 package com.ConfrontoSpeedVento.exceptions;
 
 /**
- * Questa classe  contiene l'eccezione che viene lanciata in caso di un errore nell'inserimento delle date (data non presente nel database). 
+ * Questa classe contiene l'eccezione che viene lanciata in caso l'utente inserisce una fascia oraria o una città di cui non sono presenti dati salvati. 
  * @author Edoardo Cecchini
  * @author Laura Ferretti
  *

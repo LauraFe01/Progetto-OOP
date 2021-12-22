@@ -55,10 +55,10 @@ public class datoVento {
 
 	/**
 	 * Metodo che restituisce la data e l'ora della misurazione del vento, prima del return avviene la conversione dal formato UNIX (formato ottenuto dall'API) al formato standard "yyyy-MM-dd HH:mm:ss". 
-	 * @param date         		Data della misurazione
-	 * @param jdf          		Oggetto SimpleDateFormat contenente il formato della data
-	 * @param java_date    		Stringa contenente la data convertita
-	 * @return java_date
+	 * date         			Data della misurazione.
+	 * jdf          			Oggetto SimpleDateFormat contenente il formato della data.
+	 * java_date    			Stringa contenente la data convertita.
+	 * @return java_date.
 	 */
 
 	public String getTime() {

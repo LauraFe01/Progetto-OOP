@@ -1,7 +1,7 @@
 package com.ConfrontoSpeedVento.exceptions;
 
 /**
- * Questa classe  contiene l'eccezione che viene lanciata in caso di un errore nell'inserimento delle date (formato errato)
+ * Questa classe contiene l'eccezione che viene lanciata in caso di inserimento di una data non valida.
  * @author Edoardo Cecchini
  * @author Laura Ferretti
  *

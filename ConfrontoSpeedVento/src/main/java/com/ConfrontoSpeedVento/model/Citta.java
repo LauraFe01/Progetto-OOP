@@ -9,17 +9,16 @@ import java.util.*;
  *
  */
 
-/** Costruttore della classe.
- * @param nome               Nome della città.
- * @param idOpenW            ID della città relativo all'API di Open Weather.
- * @param vector             Dati del vento relativi alla città.
- */
-
-
 public class Citta {
 	private String nome;
 	private long idOpenW;
 	private Vector<datoVento> datiVento;
+
+	/** Costruttore della classe.
+	 * @param nome               Nome della città.
+	 * idOpenW            		 ID della città relativo all'API di Open Weather.
+	 * vector             		 Dati del vento relativi alla città.
+	 */
 
 	public Citta(String nome)
 	{
