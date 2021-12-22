@@ -1,0 +1,9 @@
+com.ConfrontoSpeedVento
+com.ConfrontoSpeedVento.controller
+com.ConfrontoSpeedVento.exceptions
+com.ConfrontoSpeedVento.model
+com.ConfrontoSpeedVento.services
+com.ConfrontoSpeedVento.stats_filters
+ConfrontoSpeedVento
+ConfrontoSpeedVento.testServices
+ConfrontoSpeedVento.testStats

@@ -57,6 +57,7 @@ public class controller {
 	 * @throws dateException in caso di inserimento di una data non valida.
 	 * @throws ParseException in caso di un inserimento di una data in un formato non ammesso.
 	 * @throws vectorNullException in caso di un inserimento di una fascia oraria o una città di cui non sono presenti dati salvati.
+	 * @throws wrongDateException in caso in cui la data di inizio sia successiva alla data di fine.
 	 */
 
 	@GetMapping(value= "/stats")
@@ -86,6 +87,7 @@ public class controller {
 	 * @throws dateException in caso di inserimento di una data non valida.
 	 * @throws ParseException in caso di un inserimento di una data in un formato non ammesso.
 	 * @throws vectorNullException in caso di un inserimento di una fascia oraria o una città di cui non sono presenti dati salvati.
+	 * @throws wrongDateException in caso in cui la data di inizio sia successiva alla data di fine.
 	 */
 
 	@GetMapping(value= "/compare")
