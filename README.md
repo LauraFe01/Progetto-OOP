@@ -18,7 +18,7 @@ cercata dall'utente; inoltre compara le statistiche, relative alla velocità del
 menù prestabilito.  
 
 A scopo dimostrativo, durante il periodo di sviluppo e testing dell'applicativo, sono stati raccolti i dati relativi ad Ancona, 
-Milano, Roma e Pesaro a partire dal giorno 20/12/2021 alle ore 19:00 al giorno 22/12/2020 alle ore 19:00.  
+Milano, Roma e Pesaro a partire dal giorno 20/12/2021 alle ore 19:00 al giorno 22/12/2021 alle ore 16:00.  
 
 La chiamata all’API di OpenWeather utilizzata ha questa struttura:
 http://api.openweathermap.org/data/2.5/weather?q={city%name}&appid={API%key}
@@ -48,7 +48,7 @@ In seguito forniremo la descrizione dettagliata di ogni rotta.
 
 ## 1. /hourlySaving?nome={nomeCitta}
 
-Questa rotta permette di salvare le informazioni attuali sulla velocità del vento della città che volete. Il programma creerà un file col nome "CityName"SalvataggioOrario.json che si aggiornerà ogni ora. Al posto di {nomeCitta} deve essere inserito il nome della città di cui si vogliono fare le statistiche, se è già presente un file con lo stesso nome, il programma lo aprirà e, senza eliminare ciò che è presente, inizierà a scrivere le previsioni.
+Questa rotta permette di salvare su file le informazioni attuali sulla velocità del vento di una città a scelta. Il programma creerà un file col nome "CityName"SalvataggioOrario.json che si aggiornerà ogni ora. Al posto di {nomeCitta} (nella rotta), deve essere inserito il nome della città di cui si vogliono fare le statistiche, se è già presente un file con lo stesso nome, il programma lo aprirà e, senza eliminare ciò che è presente, inizierà a scrivere le previsioni.
 
 ![alt text](https://github.com/LauraFe01/Progetto-OOP/blob/master/esempioPostman2.png)
 
@@ -114,9 +114,9 @@ Questa rotta fornisce statistiche relative alla velocità del vento delle due ci
 * varianza della velocità del vento in una determinata fascia oraria
 * variazione percentuale di tutti i valori precedentemente scritti, della prima città rispetto alla seconda 
 
-Al posto di {nomeCitta} deve essere inserito il nome della città di cui si vogliono fare le statistiche e al posto di {dataInizio}
-e {dataFine}, rispettivamente il giorno e l'orario dell'inizio e il giorno e l'orario della fine del periodo di cui si vogliono 
-fare le statistiche (nel formato "yyyy-MM-dd HH:mm:ss").  
+Al posto di {nomeCitta} deve essere inserito il nome della città di cui si vogliono fare le statistiche e al posto di 
+{dataInizio} e {dataFine}, rispettivamente il giorno e l'orario dell'inizio e il giorno e l'orario della fine del periodo di 
+cui si vogliono fare le statistiche (nel formato "yyyy-MM-dd HH:mm:ss").  
 
 ![alt text](https://github.com/LauraFe01/Progetto-OOP/blob/master/esempioPostman.png)
 
@@ -276,11 +276,13 @@ Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSO
 ]
 ```
 ## Test
-Abbiamo implementato varie classi utili per svolgere test, principalmente per quanto riguarda alcuni metodi che fanno statistiche e comparazioni, ma anche per eccezioni e per controllare dei metodi che restituiscono JSONObject. 
+Abbiamo implementato varie classi utili per svolgere test, principalmente per quanto riguarda alcuni metodi che fanno statistiche
+e comparazioni, ma anche per eccezioni e per controllare dei metodi che restituiscono JSONObject. 
 
 ## Documentazione
 Il codice java è interamente documentato e commentato in Javadoc.  
-Per conoscere le specifiche funzionalità di ogni classe e ogni metodo consultare il Javadoc.
+Per conoscere le specifiche funzionalità di ogni classe e ogni metodo consultare il Javadoc, si può accedere ad esso tramite il
+file "index.html" situato nella cartella "doc". 
 
 ## Autori
 Laura Ferretti e Edoardo Cecchini
