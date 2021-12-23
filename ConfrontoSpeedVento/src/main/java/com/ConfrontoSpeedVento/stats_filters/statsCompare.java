@@ -170,7 +170,7 @@ public class statsCompare extends cityStats {
 
 		maxV1.put("Valore massimo "+nome1, max1 );
 		maxV1.put("Valore massimo "+nome2, max2);
-		maxV1.put("Variazione percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneMax + "%");
+		maxV1.put("Variazione percentuale del valore di "+nome1 + " rispetto a quello di " +nome2, variazioneMax);
 		maxV.put("Valori massimi velocità vento", maxV1);
 		dati.put(maxV);
 
