@@ -1,8 +1,7 @@
 # Progetto-OOP
 ## Wind Speed Statistics
-La seguente applicazione Java fornisce previsioni riguardo la velocità del vento e genera statistiche su di essa. Inoltre è
-possibile, inserendo due città a scelta da un menù prestabilito, comparare le statistiche riguardanti la velocità del vento e 
-filtrarle in base alla periodicità, range personalizzabile dall'utente.   
+La seguente applicazione Java fornisce previsioni riguardo la velocità del vento di una città e genera statistiche su di essa. Inoltre è
+possibile, inserendo due città a scelta da un menù prestabilito, comparare le statistiche riguardanti la velocità del vento in una fascia oraria personalizzabile dall'utente.   
 
 ## Indice
 1. [Descrizione](#Descrizione) 
@@ -13,8 +12,8 @@ filtrarle in base alla periodicità, range personalizzabile dall'utente.
 6. [Autori](#Autori)   
 
 ## Descrizione
-Tramite l'API OpenWeather il programma riceve, salva e fa statistiche sui dati meteo riguardanti la velocità del vento di una città
-cercata dall'utente; inoltre compara le statistiche, relative alla velocità del vento, di due città inserite da un utente da un
+Tramite l'API OpenWeather il programma riceve, salva e produce statistiche sui dati meteo riguardanti la velocità del vento di una città
+cercata dall'utente; inoltre compara le statistiche, relative alla velocità del vento, di due città inserite dall'utente da un
 menù prestabilito.  
 
 A scopo dimostrativo, durante il periodo di sviluppo e testing dell'applicativo, sono stati raccolti i dati relativi ad Ancona, 
@@ -276,7 +275,7 @@ Se l'utente inserisce tutto correttamente, verrà visualizzato su Postman un JSO
 ]
 ```
 ## Test
-Abbiamo implementato varie classi utili per svolgere test, principalmente per quanto riguarda alcuni metodi che fanno statistiche
+Abbiamo implementato varie classi utili per svolgere test, principalmente per quanto riguarda alcuni metodi che generano statistiche
 e comparazioni, ma anche per eccezioni e per controllare dei metodi che restituiscono JSONObject. 
 
 ## Documentazione
