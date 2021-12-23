@@ -18,7 +18,7 @@ cercata dall'utente; inoltre compara le statistiche, relative alla velocità del
 menù prestabilito.  
 
 A scopo dimostrativo, durante il periodo di sviluppo e testing dell'applicativo, sono stati raccolti i dati relativi ad Ancona, 
-Milano, Roma e Pesaro a partire dal giorno 20/12/2021 alle ore 19:00 al giorno 22/12/2020 alle ore 19:00.  
+Milano, Roma e Pesaro a partire dal giorno 20/12/2021 alle ore 19:00 al giorno 22/12/2020 alle ore 16:00.  
 
 La chiamata all’API di OpenWeather utilizzata ha questa struttura:
 http://api.openweathermap.org/data/2.5/weather?q={city%name}&appid={API%key}
@@ -281,6 +281,7 @@ Abbiamo implementato varie classi utili per svolgere test, principalmente per qu
 ## Documentazione
 Il codice java è interamente documentato e commentato in Javadoc.  
 Per conoscere le specifiche funzionalità di ogni classe e ogni metodo consultare il Javadoc.
+Si può accedere al Javadoc tramite il file "index.html" dal package "doc". 
 
 ## Autori
 Laura Ferretti e Edoardo Cecchini
