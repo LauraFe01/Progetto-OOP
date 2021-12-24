@@ -49,7 +49,7 @@ In seguito forniremo la descrizione dettagliata di ogni rotta.
 
 Questa rotta permette di salvare su file le informazioni attuali sulla velocità del vento di una città a scelta. Il programma creerà un file col nome "CityName"SalvataggioOrario.json che si aggiornerà ogni ora. Al posto di {nomeCitta} (nella rotta), deve essere inserito il nome della città di cui si vogliono fare le statistiche, se è già presente un file con lo stesso nome, il programma lo aprirà e, senza eliminare ciò che è presente, inizierà a scrivere le previsioni.
 
-![alt text](https://github.com/LauraFe01/Progetto-OOP/blob/master/esempioPostman2.png)
+![alt text](https://github.com/LauraFe01/Progetto-OOP/blob/master/esempioPostman1.png)
 
 In Postman se tutto è andato a buon fine, visualizzerete un messaggio del tipo:
 ```
@@ -69,9 +69,9 @@ Questa rotta fornisce statistiche relative alla velocità del vento. In particol
 
 Al posto di {nomeCitta} deve essere inserito il nome della città di cui si vogliono fare le statistiche e al posto di {dataInizio} e {dataFine}, rispettivamente il giorno e l'orario dell'inizio e il giorno e l'orario della fine del periodo di cui si vogliono fare le statistiche (nel formato "yyyy-MM-dd HH:mm:ss").  
 
-![alt text](https://github.com/LauraFe01/Progetto-OOP/blob/master/esempioPostman1.png)
+![alt text](https://github.com/LauraFe01/Progetto-OOP/blob/master/esempioPostman.png)
 
-A scopo dimostrativo viene fornito all'utente già un database chiamato "CityName"SalvataggioOrario.json, contenente valori relativi al periodo che va dalle ore 19:00 del 20/12/2021 alle ore 16:00 del 22/12/2021, aggiornati ogni ora, delle seguenti città: Ancona, Roma, Milano e Pesaro.  
+A scopo dimostrativo viene fornito all'utente già un database con file chiamati "CityName"SalvataggioOrario.json, contenenti i valori della velocità del vento relativi al periodo che va dalle ore 19:00 del 20/12/2021 alle ore 16:00 del 22/12/2021, aggiornati ogni ora, delle seguenti città: Ancona, Roma, Milano e Pesaro.  
 Le statistiche vengono fatte sui dati contenuti nel file, se i parametri inseriti non risultano corretti verranno visualizzati messaggi di errore:  
 * Se l'utente inserisce una città non ammessa viene generata un'eccezione di tipo cityException e verrà visualizzato un messaggio di errore del tipo:  
   ```
@@ -109,17 +109,19 @@ Questa rotta fornisce statistiche relative alla velocità del vento delle due ci
 * valore minimo raggiunto dalla seconda città in una determinata fascia oraria
 * valore massimo raggiunto dalla prima città in una determinata fascia oraria
 * valore massimo raggiunto dalla seconda città in una determinata fascia oraria
-* valore medio della velocità del vento in una determinata fascia oraria
-* varianza della velocità del vento in una determinata fascia oraria
+* valore medio della velocità del vento della prima città in una determinata fascia oraria
+* valore medio della velocità del vento della seconda città in una determinata fascia oraria
+* varianza della velocità del vento della prima città in una determinata fascia oraria
+* varianza della velocità del vento della seconda città in una determinata fascia oraria
 * variazione percentuale di tutti i valori precedentemente scritti, della prima città rispetto alla seconda 
 
-Al posto di {nomeCitta} deve essere inserito il nome della città di cui si vogliono fare le statistiche e al posto di 
+Al posto di {nomeCitta1} deve essere inserito il nome della prima città, al posto di {nomeCitta2} il nome della seconda città e al posto di 
 {dataInizio} e {dataFine}, rispettivamente il giorno e l'orario dell'inizio e il giorno e l'orario della fine del periodo di 
 cui si vogliono fare le statistiche (nel formato "yyyy-MM-dd HH:mm:ss").  
 
-![alt text](https://github.com/LauraFe01/Progetto-OOP/blob/master/esempioPostman.png)
+![alt text](https://github.com/LauraFe01/Progetto-OOP/blob/master/esempioPostman2.png)
 
-A scopo dimostrativo viene fornito all'utente già un database chiamato "CityName"SalvataggioOrario.json, contenente valori relativi al periodo che va dalle ore 19:00 del 20/12/2021 alle ore 16:00 del 22/12/2021, aggiornati ogni ora, delle seguenti città: Ancona, Roma, Milano e Pesaro.  
+A scopo dimostrativo viene fornito all'utente già un database con file chiamati "CityName"SalvataggioOrario.json, contenenti i valori della velocità del vento, relativi al periodo che va dalle ore 19:00 del 20/12/2021 alle ore 16:00 del 22/12/2021, aggiornati ogni ora, delle seguenti città: Ancona, Roma, Milano e Pesaro.  
 Le statistiche vengono fatte sui dati contenuti nel file, se i parametri inseriti non risultano corretti verranno visualizzati messaggi di errore:  
 * Se l'utente inserisce una città non ammessa viene generata un'eccezione di tipo cityException e verrà visualizzato un messaggio di errore del tipo:  
   ```
